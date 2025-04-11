@@ -12,7 +12,7 @@
     "test:coverage": "jest --config jest.config.js --coverage",
     "test:debug": "node --inspect-brk ./node_modules/.bin/jest --runInBand",
     "prepare": "npx husky install",
-    "type-check": "tsc --noEmit",
+    "type-check": "tsc --noEmit --skipLibCheck",
     "lint": "eslint 'src/**/*.{ts,tsx}'",
     "lint:fix": "eslint --fix 'src/**/*.{ts,tsx}'",
     "format": "prettier --write 'src/**/*.{ts,tsx}'",
@@ -27,14 +27,14 @@
     }
   },
   "lint-staged": {
-    "*.{ts,js,json}": [
-      "eslint --fix",
-      "prettier --write"
+    "src/**/*.{ts,js,json}": [
+      "npm run lint",
+      "npm run format:check"
     ],
-    "*.ts": [
-      "tsc --noEmit --skipLibCheck"
+    "src/**/*.ts": [
+      "npm run type-check"
     ],
-    "*.{ts,js}": [
+    "src/**/*.{ts,js}": [
       "npm run test"
     ]
   },
@@ -50,6 +50,7 @@
     "@typescript-eslint/parser": "^8.29.1",
     "eslint": "^9.24.0",
     "eslint-config-prettier": "^10.1.2",
+    "eslint-import-resolver-typescript": "^4.3.2",
     "eslint-plugin-import": "^2.31.0",
     "eslint-plugin-prettier": "^5.2.6",
     "husky": "^9.1.7",
@@ -63,6 +64,16 @@
     "typescript": "^5.8.3"
   },
   "dependencies": {
+    "@opentelemetry/exporter-metrics-otlp-proto": "^0.200.0",
+    "@opentelemetry/exporter-trace-otlp-http": "^0.200.0",
+    "@opentelemetry/instrumentation-express": "^0.48.0",
+    "@opentelemetry/instrumentation-http": "^0.200.0",
+    "@opentelemetry/instrumentation-mongodb": "^0.53.0",
+    "@opentelemetry/resources": "^2.0.0",
+    "@opentelemetry/sdk-metrics": "^2.0.0",
+    "@opentelemetry/sdk-node": "^0.200.0",
+    "@opentelemetry/semantic-conventions": "^1.32.0",
+    "dotenv": "^16.5.0",
     "ts-node": "^10.9.2"
   }
 }
