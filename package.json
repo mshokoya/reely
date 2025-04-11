@@ -21,21 +21,12 @@
   "engines": {
     "node": ">=20.19.0"
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "npx lint-staged"
-    }
-  },
   "lint-staged": {
-    "src/**/*.{ts,js,json}": [
-      "npm run lint",
-      "npm run format:check"
-    ],
     "src/**/*.ts": [
-      "npm run type-check"
-    ],
-    "src/**/*.{ts,js}": [
-      "npm run test"
+      "npm run lint",
+      "npm run format:check",
+      "npm run type-check",
+      "npm run test *"
     ]
   },
   "author": "",
