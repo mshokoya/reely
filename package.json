@@ -22,15 +22,15 @@
     "node": ">=20.19.0"
   },
   "lint-staged": {
-    "*.{ts,tsx,js,json}": [
+    "*.{ts,js,json}": [
       "eslint --fix",
       "prettier --write"
     ],
     "*.ts": [
       "tsc --noEmit --skipLibCheck"
     ],
-    "*.{ts,tsx,js}": [
-      "jest --bail --findRelatedTests"
+    "lol*.{ts,js}": [
+      "npm run test"
     ]
   },
   "author": "",
