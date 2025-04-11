@@ -11,7 +11,7 @@
     "test:watch": "jest --config jest.config.js --watch",
     "test:coverage": "jest --config jest.config.js --coverage",
     "test:debug": "node --inspect-brk ./node_modules/.bin/jest --runInBand",
-    "prepare": "husky install",
+    "prepare": "npx husky install",
     "type-check": "tsc --noEmit",
     "lint": "eslint 'src/**/*.{ts,tsx}'",
     "lint:fix": "eslint --fix 'src/**/*.{ts,tsx}'",
@@ -20,6 +20,11 @@
   },
   "engines": {
     "node": ">=20.19.0"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npx lint-staged"
+    }
   },
   "lint-staged": {
     "*.{ts,js,json}": [
