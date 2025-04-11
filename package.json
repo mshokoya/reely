@@ -29,7 +29,7 @@
     "*.ts": [
       "tsc --noEmit --skipLibCheck"
     ],
-    "lol*.{ts,js}": [
+    "*.{ts,js}": [
       "npm run test"
     ]
   },
