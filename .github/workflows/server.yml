@@ -31,8 +31,7 @@ jobs:
           node-version: "20.19.0"
 
       - name: Install dependencies
-        run: |
-          npm install
+        run: npm install
 
       - name: Run linters
         uses: wearerequired/lint-action@v2
@@ -40,7 +39,10 @@ jobs:
           eslint: true
           eslint_extensions: "js,ts"
           eslint_dir: ./server
-          eslint_args: "--config ./eslint.config.js"
+
+      - name: Run lint and tests
+        run: |
+          npm run lint
 
       - name: Run Tests
         run: npm run test
