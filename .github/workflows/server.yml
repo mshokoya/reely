@@ -40,12 +40,13 @@ jobs:
           eslint: true
           eslint_extensions: "js,ts"
           eslint_dir: ./server
+          eslint_args: "--config eslint.config.js"
 
       - name: Run Tests
         run: npm run test
 
-      - name: Run Test Coverage
-        run: npm run test
+      # - name: Run Test Coverage
+      #   run: npm run test
 
       # - name: Build project
       #   run: npm run build
