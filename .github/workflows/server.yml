@@ -47,8 +47,6 @@ jobs:
 
       - name: Static Code Analysis
         uses: github/codeql-action/analyze@v2
-        with:
-          languages: javascript
 
       - name: Run Tests & Coverage
         run: npm run test:cov --ci
