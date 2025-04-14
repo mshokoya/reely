@@ -41,7 +41,17 @@ jobs:
           eslint_dir: ./server
 
       - name: Run Tests
-        run: npm run test
+        run: npm run jest --ci
+
+      - name: Run Test Reports
+        uses: dorny/test-reporter@v2
+        with:
+          name: Reely Server Test Report
+          path: ./test_reports
+          artifact: "junit-report"
+          reporter: junit
+          working-directory: ./server
+          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Run Test Coverage
         uses: artiomtr/jest-coverage-report-action@v2
@@ -49,6 +59,10 @@ jobs:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           threshold: 80
           working-directory: ./server
+          annotations: coverage
+          skip-step: install
+          coverage-file: ./test_reports/default-report.json
+
       # - name: Build project
       #   run: npm run build
 
