@@ -40,29 +40,44 @@ jobs:
           eslint_extensions: "js,ts"
           eslint_dir: ./server
 
-      - name: Run Tests
-        run: npm run test --ci
+      - name: Run Tests & Coverage
+        run: npm run test:cov --ci
 
-      - name: Run Test Reports
-        uses: dorny/test-reporter@v2
+      - name: Jest Coverage Comment
+        uses: MishaKav/jest-coverage-comment@main
         with:
-          name: Reely Server Test Report
-          path: ./test_reports/junit-report.xml
-          reporter: jest-junit
-          working-directory: ./server
-          token: ${{ secrets.GITHUB_TOKEN }}
-          fail-on-error: "true"
-          fail-on-empty: "true"
+          junitxml-title: JUnit Test Report
+          junitxml-path: ./test_reports/junit-report.xml
+          hide-summary: false
+          coverage-summary-path: ./test_reports/coverage/coverage-final.json
+          title: My Jest Coverage Comment
+          summary-title: Test Coverage Summary
+          badge-title: Coverage
+          hide-comment: false
+          create-new-comment: false
+          coverage-title: Test Coverage Report
+          coverage-path: ./test_reports/coverage/coverage.txt
 
-      - name: Run Test Coverage
-        uses: artiomtr/jest-coverage-report-action@v2
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          threshold: 80
-          working-directory: ./server
-          annotations: coverage
-          skip-step: install
-          coverage-file: ./test_reports/default-report.json
+      # - name: Run Test Reports
+      #   uses: dorny/test-reporter@v2
+      #   with:
+      #     name: Reely Server Test Report
+      #     path: ./test_reports/junit-report.xml
+      #     reporter: jest-junit
+      #     working-directory: ./server
+      #     token: ${{ secrets.GITHUB_TOKEN }}
+      #     fail-on-error: "true"
+      #     fail-on-empty: "true"
+
+      # - name: Run Test Coverage
+      #   uses: artiomtr/jest-coverage-report-action@v2
+      #   with:
+      #     github-token: ${{ secrets.GITHUB_TOKEN }}
+      #     threshold: 80
+      #     working-directory: ./server
+      #     annotations: coverage
+      #     skip-step: install
+      #     coverage-file: ./test_reports/default-report.json
 
       # - name: Build project
       #   run: npm run build

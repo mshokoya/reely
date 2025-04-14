@@ -12,11 +12,11 @@
     "outDir": "./dist",
     "rootDir": ".",
     "baseUrl": "./",
-    "paths": {
-      "@utils/*": ["src/utils/*"],
-      "@services/*": ["src/services/*"],
-      "@controllers/*": ["src/controllers/*"]
-    },
+    // "paths": {
+    //   "@utils/*": ["src/utils/*"],
+    //   "@services/*": ["src/services/*"],
+    //   "@controllers/*": ["src/controllers/*"]
+    // },
     "types": ["jest", "node"]
   },
   "include": ["src/**/*"],
