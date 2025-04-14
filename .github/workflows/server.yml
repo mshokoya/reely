@@ -47,16 +47,16 @@ jobs:
         uses: MishaKav/jest-coverage-comment@main
         with:
           junitxml-title: JUnit Test Report
-          junitxml-path: ./test_reports/junit-report.xml
+          junitxml-path: ./server/test_reports/junit-report.xml
           hide-summary: false
-          coverage-summary-path: ./test_reports/coverage/coverage-final.json
+          coverage-summary-path: ./server/test_reports/coverage/coverage-final.json
           title: My Jest Coverage Comment
           summary-title: Test Coverage Summary
           badge-title: Coverage
           hide-comment: false
           create-new-comment: false
           coverage-title: Test Coverage Report
-          coverage-path: ./test_reports/coverage/coverage.txt
+          coverage-path: ./server/test_reports/coverage/coverage.txt
 
       # - name: Run Test Reports
       #   uses: dorny/test-reporter@v2
