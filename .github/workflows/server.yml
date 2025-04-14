@@ -40,16 +40,14 @@ jobs:
           eslint_extensions: "js,ts"
           eslint_dir: ./server
 
-      - name: Run lint and tests
-        run: |
-          npx eslint -c ./eslint.config.js
-
       - name: Run Tests
         run: npm run test
 
-      # - name: Run Test Coverage
-      #   run: npm run test
-
+      - name: Run Test Coverage
+        uses: artiomtr/jest-coverage-report-action@v2
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          threshold: 80
       # - name: Build project
       #   run: npm run build
 
