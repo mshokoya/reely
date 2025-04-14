@@ -49,7 +49,7 @@ jobs:
           name: Reely Server Test Report
           path: ./test_reports
           artifact: "junit-report"
-          reporter: junit
+          reporter: jest-junit
           working-directory: ./server
           token: ${{ secrets.GITHUB_TOKEN }}
           fail-on-error: "true"
