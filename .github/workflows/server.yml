@@ -48,6 +48,7 @@ jobs:
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           threshold: 80
+          working-directory: ./server
       # - name: Build project
       #   run: npm run build
 
