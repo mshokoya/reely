@@ -50,7 +50,7 @@ jobs:
           junitxml-path: ./server/test_reports/junit-report.xml
           hide-summary: false
           coverage-summary-path: ./server/test_reports/coverage/coverage-final.json
-          title: My Jest Coverage Comment
+          title: Test Report
           summary-title: Test Coverage Summary
           badge-title: Coverage
           hide-comment: false
