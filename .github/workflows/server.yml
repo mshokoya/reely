@@ -41,7 +41,7 @@ jobs:
           eslint_dir: ./server
 
       - name: Run Tests
-        run: npm run jest --ci
+        run: npm run test --ci
 
       - name: Run Test Reports
         uses: dorny/test-reporter@v2
@@ -52,6 +52,8 @@ jobs:
           reporter: junit
           working-directory: ./server
           token: ${{ secrets.GITHUB_TOKEN }}
+          fail-on-error: "true"
+          fail-on-empty: "true"
 
       - name: Run Test Coverage
         uses: artiomtr/jest-coverage-report-action@v2
