@@ -3,39 +3,50 @@ name: Reely Server CI
 on:
   push:
     paths:
-      - 'server/**'
+      - "server/**"
     branches:
       - main
   pull_request:
     paths:
-      - 'server/**'
+      - "server/**"
     branches:
       - main
+
+defaults:
+  run:
+    working-directory: ./server
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-      
       - name: Checkout code
         uses: actions/checkout@v4
 
       - name: Set up Node.js
         uses: actions/setup-node@v2
         with:
-          node-version: '20.19.0'
+          node-version: "20.19.0"
 
       - name: Install dependencies
         run: |
-          cd server
           npm install
 
-      - name: Run lint and tests
-        run: |
-          cd server
-          npm run lint
-          npm run test
+      - name: Run linters
+        uses: wearerequired/lint-action@v2
+        with:
+          eslint: true
+          eslint_extensions: "js,ts"
+
+      - name: Run Prettier
+        uses: wearerequired/lint-action@v2
+        with:
+          prettier: true
+          prettier_extensions: "js,ts"
+
+      - name: Run Tests
+        run: npm run test
 
       # - name: Build project
       #   run: npm run build
