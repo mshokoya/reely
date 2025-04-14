@@ -49,7 +49,7 @@ jobs:
           junitxml-title: JUnit Test Report
           junitxml-path: ./server/test_reports/junit-report.xml
           hide-summary: false
-          coverage-summary-path: ./server/test_reports/coverage/coverage-final.json
+          coverage-summary-path: ./server/test_reports/coverage/coverage-summary.json
           title: Test Report
           summary-title: Test Coverage Summary
           badge-title: Coverage
