@@ -47,8 +47,7 @@ jobs:
         uses: dorny/test-reporter@v2
         with:
           name: Reely Server Test Report
-          path: ./test_reports
-          artifact: "junit-report"
+          path: ./test_reports/junit-report.xml
           reporter: jest-junit
           working-directory: ./server
           token: ${{ secrets.GITHUB_TOKEN }}
