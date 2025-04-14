@@ -19,6 +19,7 @@ defaults:
 jobs:
   build:
     runs-on: ubuntu-latest
+    permissions: write-all
 
     steps:
       - name: Checkout code
@@ -39,7 +40,13 @@ jobs:
           eslint: true
           eslint_extensions: "js,ts"
           eslint_dir: ./server
-          eslint_args: "--config eslint.config.js"
+
+      - name: Run Prettier
+        uses: wearerequired/lint-action@v2
+        with:
+          prettier: true
+          prettier_extensions: "js,ts"
+          eslint_dir: ./server
 
       - name: Run Tests
         run: npm run test
