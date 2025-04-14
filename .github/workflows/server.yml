@@ -42,7 +42,7 @@ jobs:
 
       - name: Run lint and tests
         run: |
-          npm run lint -c ./eslint.config.js
+          npx eslint -c ./eslint.config.js
 
       - name: Run Tests
         run: npm run test
