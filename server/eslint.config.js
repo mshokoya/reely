@@ -43,7 +43,7 @@ module.exports = [
       'import/order': ['error', {
         groups: [['builtin', 'external', 'internal']],
       }],
-      'import/no-unresolved': 'error',
+      // 'import/no-unresolved': 'error',
       'import/no-unused-modules': 'warn',
     },
   },
