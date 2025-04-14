@@ -24,7 +24,7 @@ module.exports = [
       'import/resolver': {
         node: {
           extensions: ['.js', '.ts', '.json'],
-          paths: ['src'],
+          paths: ['./src'],
         },
         typescript: {
           alwaysTryTypes: true,
