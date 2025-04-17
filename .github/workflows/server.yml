@@ -42,12 +42,12 @@ jobs:
           continue_on_error: false
 
       - name: Static Code Analysis [Initialize CodeQL]
-        uses: github/codeql-action/init@v2
+        uses: github/codeql-action/init@v3
         with:
           languages: typescript
 
       - name: Static Code Analysis
-        uses: github/codeql-action/analyze@v2
+        uses: github/codeql-action/analyze@v3
 
       - name: Run Tests & Coverage
         run: npm run test:cov --ci
