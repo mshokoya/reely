@@ -1,1 +1,3 @@
-console.log('hello world !');
+import server from './services/server/express';
+
+server.startServer();

@@ -1,22 +1,22 @@
 {
   "extends": "@tsconfig/node20/tsconfig.json",
   "compilerOptions": {
-    "target": "esnext",
-    "module": "esnext",
-    "moduleResolution": "node",
+    "target": "ESNext",
+    "module": "NodeNext",
+    "moduleResolution": "nodenext",
     "strict": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
     // --
     "outDir": "./dist",
-    "rootDir": "./src",
-    "baseUrl": ".",
-    "paths": {
-      "@utils/*": ["src/utils/*"],
-      "@services/*": ["src/services/*"],
-      "@controllers/*": ["src/controllers/*"]
-    },
+    "rootDir": ".",
+    "baseUrl": "./",
+    // "paths": {
+    //   "@utils/*": ["src/utils/*"],
+    //   "@services/*": ["src/services/*"],
+    //   "@controllers/*": ["src/controllers/*"]
+    // },
     "types": ["jest", "node"]
   },
   "include": ["src/**/*"],
