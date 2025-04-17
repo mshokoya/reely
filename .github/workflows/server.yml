@@ -39,6 +39,7 @@ jobs:
           eslint: true
           eslint_extensions: "js,ts"
           eslint_dir: ./server
+          continue_on_error: false
 
       - name: Static Code Analysis [Initialize CodeQL]
         uses: github/codeql-action/init@v2
