@@ -23,7 +23,6 @@
   },
   "lint-staged": {
     "server/src/**/*.ts": [
-      "rm -rf test_results",
       "npm run lint",
       "npm run format:check",
       "npm run type-check",
