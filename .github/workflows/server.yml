@@ -1,0 +1,100 @@
+name: Reely Server CI
+
+on:
+  push:
+    paths:
+      - "server/**"
+    branches:
+      - main
+  pull_request:
+    paths:
+      - "server/**"
+    branches:
+      - main
+
+defaults:
+  run:
+    working-directory: ./server
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions: write-all
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: "20.19.0"
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run linters
+        uses: wearerequired/lint-action@v2
+        with:
+          eslint: true
+          eslint_extensions: "js,ts"
+          eslint_dir: ./server
+          continue_on_error: false
+
+      # - name: Static Code Analysis [Initialize CodeQL]
+      #   uses: github/codeql-action/init@v3
+      #   with:
+      #     languages: typescript
+
+      # - name: Static Code Analysis
+      #   uses: github/codeql-action/analyze@v3
+
+      - name: Run Tests & Coverage
+        run: npm run test:cov --ci
+
+      - name: Jest Coverage Comment
+        uses: MishaKav/jest-coverage-comment@main
+        with:
+          junitxml-title: JUnit Test Report
+          junitxml-path: ./server/test_reports/junit-report.xml
+          hide-summary: false
+          coverage-summary-path: ./server/test_reports/coverage/coverage-summary.json
+          title: Test Report
+          summary-title: Test Coverage Summary
+          badge-title: Coverage
+          hide-comment: false
+          create-new-comment: false
+          coverage-title: Test Coverage Report
+          coverage-path: ./server/test_reports/coverage/coverage.txt
+
+      # - name: Run Test Reports
+      #   uses: dorny/test-reporter@v2
+      #   with:
+      #     name: Reely Server Test Report
+      #     path: ./test_reports/junit-report.xml
+      #     reporter: jest-junit
+      #     working-directory: ./server
+      #     token: ${{ secrets.GITHUB_TOKEN }}
+      #     fail-on-error: "true"
+      #     fail-on-empty: "true"
+
+      # - name: Run Test Coverage
+      #   uses: artiomtr/jest-coverage-report-action@v2
+      #   with:
+      #     github-token: ${{ secrets.GITHUB_TOKEN }}
+      #     threshold: 80
+      #     working-directory: ./server
+      #     annotations: coverage
+      #     skip-step: install
+      #     coverage-file: ./test_reports/default-report.json
+
+      # - name: Build project
+      #   run: npm run build
+
+      # - name: Deploy to Vercel
+      #   uses: amondnet/vercel-action@v20
+      #   with:
+      #     vercel-token: ${{ secrets.VERCEL_TOKEN }}
+      #     vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
+      #     vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
+      #     vercel-args: '--prod'
