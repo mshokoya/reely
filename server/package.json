@@ -72,6 +72,8 @@
     "@opentelemetry/sdk-node": "^0.200.0",
     "@opentelemetry/semantic-conventions": "^1.32.0",
     "@pwrdrvr/dynamodb-session-store": "^1.1.0",
+    "aws-sdk": "^2.1692.0",
+    "cookie-parser": "^1.4.7",
     "cors": "^2.8.5",
     "dotenv": "^16.5.0",
     "express": "^5.1.0",

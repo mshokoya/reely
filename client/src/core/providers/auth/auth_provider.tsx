@@ -20,7 +20,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
 
   const login = async () => {
     isLoading.set(true);
-    await loginAction().then((u) => user.set(u));
+    await loginAction();
     isLoading.set(false)
   }
 

@@ -4,6 +4,7 @@ import { homeRoute } from './home'
 import { loginRoute } from './auth/login'
 import { signupRoute } from './auth/signup'
 import { Nav } from '../components/nav'
+import { cognitoAuthRoute } from './auth/cognito_auth'
 
 
 export const rootRoute = createRootRoute({
@@ -19,4 +20,5 @@ export const rootTree = rootRoute.addChildren([
   homeRoute,
   loginRoute,
   signupRoute,
+  cognitoAuthRoute
 ])

@@ -1,6 +1,6 @@
-import { server } from './server';
+import { server as svr } from './server';
 import { routes } from './routes';
 
-routes(server.app);
+routes(svr.app);
 
-export default server;
+export const server = svr;

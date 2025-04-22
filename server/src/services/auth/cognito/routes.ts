@@ -10,14 +10,17 @@ export const loginRoute = async (req: any, res: any) => {
 };
 
 export const callbackRoute = async (req: any, res: any) => {
+  console.log('IN THE CALLBACK ROUTE');
   try {
     const tokens = await returnCallbackAction(req);
+    console.log('IN THE CALLBACK ROUTE 222');
     res.cookie('ACCESS_TOKEN', tokens.access_token, { httpOnly: true, signed: true });
     res.cookie('REFRESH_TOKEN', tokens.refresh_token, { httpOnly: true, signed: true });
     res.cookie('ID_TOKEN', tokens.id_token);
     res.clearCookie('state');
     res.clearCookie('code_verifier');
-    res.send(tokens);
+
+    res.json(JSON.stringify({ data: tokens.id_token }));
   } catch (err) {
     console.error(err);
     res.status(500).send(err);
