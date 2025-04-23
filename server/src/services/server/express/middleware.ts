@@ -57,7 +57,8 @@ export const checkAuth = async (
 };
 
 async function validateRefreshToken(refreshToken: string) {
-  return (await cognitoClient).refreshMyToken(refreshToken)
+  return (await cognitoClient)
+    .refreshMyToken(refreshToken)
     .then(async (d) => await d.json())
     .then((res) => {
       console.log('validateRefreshToken');
