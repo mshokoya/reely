@@ -1,6 +1,5 @@
 import './env';
-import server from './services/server/express';
-
-// console.log(process.env);
+import './services/database';
+import { server } from './services/server';
 
 server.startServer();

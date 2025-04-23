@@ -13,7 +13,7 @@ export const user_favorites_schema = {
     { AttributeName: 'userId', AttributeType: 'S' },
     { AttributeName: 'propertyId', AttributeType: 'S' },
   ],
-  ProvisionedThroughput: { ReadCapacityUnits: 5, WriteCapacityUnits: 5 },
+  ProvisionedThroughput: { ReadCapacityUnits: 10, WriteCapacityUnits: 5 },
 };
 
 export const parseSchema = (data: { [key: string]: any }) => ({

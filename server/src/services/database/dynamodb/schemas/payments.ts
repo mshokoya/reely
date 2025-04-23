@@ -15,11 +15,11 @@ const payments_schema = {
   ],
   AttributeDefinitions: [
     { AttributeName: 'id', AttributeType: 'S' },
-    { AttributeName: 'amountDue', AttributeType: 'S' },
-    { AttributeName: 'amountPaid', AttributeType: 'S' },
-    { AttributeName: 'dueDate', AttributeType: 'S' },
-    { AttributeName: 'paymentDate', AttributeType: 'S' },
-    { AttributeName: 'paymentStatus', AttributeType: 'S' },
+    // { AttributeName: 'amountDue', AttributeType: 'S' },
+    // { AttributeName: 'amountPaid', AttributeType: 'S' },
+    // { AttributeName: 'dueDate', AttributeType: 'S' },
+    // { AttributeName: 'paymentDate', AttributeType: 'S' },
+    // { AttributeName: 'paymentStatus', AttributeType: 'S' },
     { AttributeName: 'leaseId', AttributeType: 'S' },
   ],
   GlobalSecondaryIndexes: [
@@ -27,16 +27,16 @@ const payments_schema = {
       IndexName: 'LeaseIndex',
       KeySchema: [{ AttributeName: 'leaseId', KeyType: 'HASH' }],
       Projection: { ProjectionType: 'ALL' },
-      ProvisionedThroughput: { ReadCapacityUnits: 5, WriteCapacityUnits: 5 },
+      ProvisionedThroughput: { ReadCapacityUnits: 10, WriteCapacityUnits: 5 },
     },
-    {
-      IndexName: 'StatusIndex',
-      KeySchema: [{ AttributeName: 'paymentStatus', KeyType: 'HASH' }],
-      Projection: { ProjectionType: 'ALL' },
-      ProvisionedThroughput: { ReadCapacityUnits: 5, WriteCapacityUnits: 5 },
-    },
+    // {
+    //   IndexName: 'StatusIndex',
+    //   KeySchema: [{ AttributeName: 'paymentStatus', KeyType: 'HASH' }],
+    //   Projection: { ProjectionType: 'ALL' },
+    //   ProvisionedThroughput: { ReadCapacityUnits: 5, WriteCapacityUnits: 5 },
+    // },
   ],
-  ProvisionedThroughput: { ReadCapacityUnits: 5, WriteCapacityUnits: 5 },
+  ProvisionedThroughput: { ReadCapacityUnits: 10, WriteCapacityUnits: 5 },
 };
 
 const parseSchema = (data: { [key: string]: any }) => ({

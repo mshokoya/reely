@@ -1,4 +1,9 @@
-import { CreateTableCommand, DynamoDBClient, DynamoDBClientConfig } from '@aws-sdk/client-dynamodb';
+import {
+  CreateTableCommand,
+  DynamoDBClient,
+  DynamoDBClientConfig,
+  DynamoDB,
+} from '@aws-sdk/client-dynamodb';
 import {
   DynamoDBDocumentClient,
   GetCommand,
@@ -13,6 +18,7 @@ type ReturnValues = 'ALL_NEW' | 'ALL_OLD' | 'NONE' | 'UPDATED_NEW' | 'UPDATED_OL
 export class Database {
   private client: DynamoDBClient;
   private docClient: DynamoDBDocumentClient;
+  // private config: DynamoDBClientConfig;
 
   constructor(config: DynamoDBClientConfig) {
     this.client = new DynamoDBClient(config);
@@ -20,9 +26,12 @@ export class Database {
   }
 
   async createDynamoDBTables(tables: { [key: string]: any }[]) {
+    const tableNames = (await new DynamoDB().listTables()).TableNames || [];
+
     for (const tableDefinition of tables) {
       try {
-        // ts-expect-error tableDefinition
+        if (tableNames.includes(tableDefinition.TableName)) continue;
+        // @ts-expect-error tableDefinition
         const command = new CreateTableCommand(tableDefinition);
         await this.docClient.send(command);
         console.log(`Table ${tableDefinition.TableName} created successfully`);

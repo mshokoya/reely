@@ -1,3 +1,4 @@
+import { doesNotMatch } from 'assert';
 import { database } from '..';
 
 type User = {
@@ -10,29 +11,23 @@ type User = {
 const user_schema = {
   TableName: 'Users',
   KeySchema: [
-    { AttributeName: 'cognitoId', KeyType: 'HASH' }, // Partition key
+    { AttributeName: 'id', KeyType: 'HASH' }, // Partition key
   ],
   AttributeDefinitions: [
     { AttributeName: 'id', AttributeType: 'S' },
     { AttributeName: 'email', AttributeType: 'S' },
-    { AttributeName: 'userType', AttributeType: 'S' },
-    { AttributeName: 'phone', AttributeType: 'S' },
+    // { AttributeName: 'userType', AttributeType: 'S' },
+    // { AttributeName: 'phone', AttributeType: 'S' },
   ],
   GlobalSecondaryIndexes: [
     {
       IndexName: 'EmailIndex',
       KeySchema: [{ AttributeName: 'email', KeyType: 'HASH' }],
       Projection: { ProjectionType: 'ALL' },
-      ProvisionedThroughput: { ReadCapacityUnits: 5, WriteCapacityUnits: 5 },
-    },
-    {
-      IndexName: 'UserTypeIndex',
-      KeySchema: [{ AttributeName: 'userType', KeyType: 'HASH' }],
-      Projection: { ProjectionType: 'ALL' },
-      ProvisionedThroughput: { ReadCapacityUnits: 5, WriteCapacityUnits: 5 },
+      ProvisionedThroughput: { ReadCapacityUnits: 10, WriteCapacityUnits: 5 },
     },
   ],
-  ProvisionedThroughput: { ReadCapacityUnits: 5, WriteCapacityUnits: 5 },
+  ProvisionedThroughput: { ReadCapacityUnits: 10, WriteCapacityUnits: 5 },
 };
 
 const parseSchema = (data: { [key: string]: any }) => ({
@@ -50,8 +45,16 @@ const genSchema = (id: string, email: string, userType: string[], phone: string)
 });
 
 const actions = {
-  createUser: async (user: User) =>
-    await database.putData('Users', genSchema(user.id, user.email, ['tenant'], '')),
+  getUser: async (id: string) => {
+    const user = await database.getData(user_schema.TableName, { id });
+    return user.Item;
+  },
+  createUser: async (id: string, email: string) => {
+    const user = { id, email, userType: ['tenant'], phone: '' };
+    let fmtUser = genSchema(user.id, user.email, user.userType, user.phone);
+    await database.putData(user_schema.TableName, fmtUser);
+    return user;
+  },
 };
 
 export const users = {

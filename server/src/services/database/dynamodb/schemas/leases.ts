@@ -15,10 +15,10 @@ const leases_schema = {
   ],
   AttributeDefinitions: [
     { AttributeName: 'id', AttributeType: 'S' },
-    { AttributeName: 'startDate', AttributeType: 'S' },
-    { AttributeName: 'endDate', AttributeType: 'S' },
-    { AttributeName: 'rent', AttributeType: 'S' },
-    { AttributeName: 'deposit', AttributeType: 'S' },
+    // { AttributeName: 'startDate', AttributeType: 'S' },
+    // { AttributeName: 'endDate', AttributeType: 'S' },
+    // { AttributeName: 'rent', AttributeType: 'S' },
+    // { AttributeName: 'deposit', AttributeType: 'S' },
     { AttributeName: 'propertyId', AttributeType: 'S' },
     { AttributeName: 'userId', AttributeType: 'S' },
   ],
@@ -27,16 +27,16 @@ const leases_schema = {
       IndexName: 'PropertyIndex',
       KeySchema: [{ AttributeName: 'propertyId', KeyType: 'HASH' }],
       Projection: { ProjectionType: 'ALL' },
-      ProvisionedThroughput: { ReadCapacityUnits: 5, WriteCapacityUnits: 5 },
+      ProvisionedThroughput: { ReadCapacityUnits: 10, WriteCapacityUnits: 5 },
     },
     {
-      IndexName: 'TenantIndex',
+      IndexName: 'UserIndex',
       KeySchema: [{ AttributeName: 'userId', KeyType: 'HASH' }],
       Projection: { ProjectionType: 'ALL' },
-      ProvisionedThroughput: { ReadCapacityUnits: 5, WriteCapacityUnits: 5 },
+      ProvisionedThroughput: { ReadCapacityUnits: 10, WriteCapacityUnits: 5 },
     },
   ],
-  ProvisionedThroughput: { ReadCapacityUnits: 5, WriteCapacityUnits: 5 },
+  ProvisionedThroughput: { ReadCapacityUnits: 10, WriteCapacityUnits: 5 },
 };
 
 const parseSchema = (data: { [key: string]: any }) => ({
