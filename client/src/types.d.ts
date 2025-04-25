@@ -1,6 +1,7 @@
 type User = {
   id: string
   email: string
+  userType: ('tenant' | 'manager')[]
 }
 
 type Ouser = Observable<User | null>;

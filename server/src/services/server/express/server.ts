@@ -2,7 +2,15 @@ import express from 'express';
 import cors from 'cors';
 import session from 'express-session';
 import cookieParser from 'cookie-parser';
+import { User } from '../../../types';
 // import { dynamoDBSessionStorage } from 'src/services/database/dynamodb/session_storage';
+
+declare module 'express-session' {
+  // eslint-disable-next-line no-unused-vars
+  interface SessionData {
+    user: User;
+  }
+}
 
 export const server = (() => {
   const app = express();
@@ -25,7 +33,9 @@ export const server = (() => {
 })();
 
 function initCors(app: express.Application) {
-  const allowedOrigins = [process.env.FRONTEND_URL as string];
+  const aws_url = new URL(process.env.COGNITO_LOGOUT_URL as string).origin;
+  console.log(aws_url);
+  const allowedOrigins = [process.env.FRONTEND_URL as string, aws_url];
 
   const corsConfig = {
     origin: allowedOrigins,

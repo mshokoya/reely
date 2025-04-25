@@ -1,5 +1,4 @@
-import { jwtDecode } from "jwt-decode";
-import { fetch_api, get_cookie } from "../util";
+import { fetch_api } from "../util";
 
 export const loginAction = async () => (
   await fetch_api({ url: import.meta.env.VITE_LOGIN_PATH as string })
@@ -15,19 +14,9 @@ export const signupAction = async () => (
 );
 
 export const logoutAction = async () => {
-  console.log('EEYYAA')
   return await fetch_api({ url: import.meta.env.VITE_LOGOUT_PATH as string })
 };
 
 export const verifyLoginAction = async () => {
-  const token = get_cookie(import.meta.env.VITE_ID_TOKEN as string);
-  console.log(token)
-  if (!token) return;
-  const decoded_token = jwtDecode<IDTOKEN>(token);
-  if (!decoded_token || !decoded_token.email) return;
-  return await fetch_api<User>({ url: `${import.meta.env.VITE_FIND_USER_BY_EMAIL_PATH}/${decoded_token.email}` })
-};
-
-export const loginCallbackAction = async (code: string) => {
-
+  return await fetch_api<User>({ url: import.meta.env.VITE_GET_ME_PATH })
 };

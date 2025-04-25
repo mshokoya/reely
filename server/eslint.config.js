@@ -35,7 +35,7 @@ module.exports = [
     rules: {
       'prettier/prettier': 'error',
       'no-unused-vars': 'warn',
-      'no-console': 'warn',
+      'no-console': 'off',
       '@typescript-eslint/explicit-module-boundary-types': 'off',
       '@typescript-eslint/no-explicit-any': 'warn',
       '@typescript-eslint/ban-ts-comment': 'warn',
@@ -45,6 +45,7 @@ module.exports = [
       }],
       // 'import/no-unresolved': 'error',
       'import/no-unused-modules': 'warn',
+  
     },
   },
 ];

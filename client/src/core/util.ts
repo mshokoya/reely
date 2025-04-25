@@ -12,11 +12,9 @@ export const fetch_api = async <T = unknown>({ url, method = 'GET', headers = {}
       ...headers
     },
     credentials: 'include'
-  }).then(async (res) => await res.json() as T)
-}
-
-export function get_cookie(name: string) {
-  const value = `; ${document.cookie}`;
-  const parts = value.split(`; ${name}=`);
-  if (parts.length === 2) return parts.pop().split(';').shift();
+  })
+    .then(async (res) => {
+      if (!res.ok) throw new Error(await res.text());
+      return await res.json() as T
+    })
 }

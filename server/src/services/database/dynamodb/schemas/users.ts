@@ -1,4 +1,3 @@
-import { doesNotMatch } from 'assert';
 import { database } from '..';
 
 type User = {
@@ -45,11 +44,17 @@ const genSchema = (id: string, email: string, userType: string[], phone: string)
 });
 
 const actions = {
-  getUser: async (id: string) => {
-    const user = await database.getData(user_schema.TableName, { id });
-    return user.Item;
+  getById: async (id: string) => {
+    let user = await database.getData(user_schema.TableName, { id });
+    user = parseSchema(user.Item);
+    return user;
   },
-  createUser: async (id: string, email: string) => {
+  getByEmail: async (email: string) => {
+    let user = await database.getData(user_schema.TableName, { email });
+    user = parseSchema(user.Item);
+    return user;
+  },
+  create: async (id: string, email: string) => {
     const user = { id, email, userType: ['tenant'], phone: '' };
     let fmtUser = genSchema(user.id, user.email, user.userType, user.phone);
     await database.putData(user_schema.TableName, fmtUser);

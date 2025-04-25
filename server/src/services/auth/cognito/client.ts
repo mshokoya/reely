@@ -28,12 +28,11 @@ async function initOpenIdClient() {
 async function getCognitoJWTPublicKey(tokenSigningKeyUrl: string) {
   const res = await fetch(tokenSigningKeyUrl);
   const data = (await res.json()) as { keys: string[] };
-  // console.log(data);
   const jwtSigningKey = createPublicKey({ format: 'jwk', key: data.keys[1] }).export({
     format: 'pem',
     type: 'spki',
   });
-  // console.log(jwtSigningKey);
+
   return jwtSigningKey;
 }
 

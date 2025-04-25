@@ -2,6 +2,7 @@ import { jwtDecode } from 'jwt-decode';
 import { users } from '../../../services/database/dynamodb/schemas';
 import { loginAction } from './actions/login_action';
 import { returnCallbackAction } from './actions/return_callback_action';
+import { sanitizeUser } from '../../../services/server/express/utils/helpers';
 
 export const loginRoute = async (req: any, res: any) => {
   const { state, code_verifier, congnitoLoginURL } = await loginAction();
@@ -15,21 +16,19 @@ export const callbackRoute = async (req: any, res: any) => {
   try {
     const tokens = await returnCallbackAction(req);
     const { sub, email } = jwtDecode<{ sub: string; email: string }>(tokens.id_token as string);
-    console.log('getting user');
-    let user = await users.actions.getUser(sub);
-    console.log(user);
+    let user = await users.actions.getById(sub);
+
     if (!user) {
-      user = await users.actions.createUser(sub, email);
+      user = await users.actions.create(sub, email);
     }
 
     req.session.user = user;
 
-    res.cookie('Authorization', tokens.access_token, { httpOnly: true, signed: true });
-    res.cookie('x-refresh-token', tokens.refresh_token, { httpOnly: true, signed: true });
+    res.cookie('at', tokens.access_token, { httpOnly: true, signed: true });
+    res.cookie('rt', tokens.refresh_token, { httpOnly: true, signed: true });
     res.clearCookie('state');
     res.clearCookie('code_verifier');
-
-    res.json(JSON.stringify({ data: tokens.id_token }));
+    res.json({ data: sanitizeUser(user) });
   } catch (err) {
     console.error(err);
     res.status(500).send(err);
@@ -37,11 +36,15 @@ export const callbackRoute = async (req: any, res: any) => {
 };
 
 export const logoutRoute = async (req: any, res: any) => {
+  const logoutUrl = `${process.env.COGNITO_LOGOUT_URL}?client_id=${process.env.COGNITO_CLIENT_ID}&logout_uri=${process.env.FRONTEND_URL}`;
   req.session.destroy();
-  const logoutUrl = `https://${process.env.COGNITO_USER_POOL_ID}.auth.${process.env.AWS_REGION}.amazoncognito.com/logout?client_id=${process.env.COGNITO_CLIENT_ID}&logout_uri=${process.env.COGNITO_LOGOUT_URL}`;
-  res.redirect(logoutUrl);
-  res.clearCookie('Authorization');
-  res.clearCookie('x-refresh-token');
-  res.clearCookie('ID_TOKEN');
-  res.send('Logged out');
+  res.clearCookie('at');
+  res.clearCookie('rt');
+  res.clearCookie('connect.sid');
+  return fetch(logoutUrl)
+    .then(() => res.status(200).json({}))
+    .catch((err) => {
+      console.error(err);
+      return res.status(500).send('Internal server error');
+    });
 };
