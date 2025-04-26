@@ -27,7 +27,7 @@ export const Nav = observer(() => {
   const logoutClick = async () => {
     if (isLoading) return
     await logout()
-      .then(() => {
+      .then(async () => {
         if (href === import.meta.env.VITE_API_URL) return
         navigate({ to: '/' })
       })

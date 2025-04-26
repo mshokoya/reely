@@ -34,7 +34,14 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   const logout = async () => {
     if (isLoading.peek()) return
     isLoading.set(true);
-    await logoutAction().then(() => user.set(null));
+    await logoutAction()
+      .then(async (data) => {
+        user.set(null)
+        window.location.href = data.url;
+    }).catch((e) => { 
+      console.log('error')
+      console.log(e)
+    });
     isLoading.set(false)
   }
 

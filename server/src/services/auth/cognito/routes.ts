@@ -35,16 +35,12 @@ export const callbackRoute = async (req: any, res: any) => {
   }
 };
 
+
 export const logoutRoute = async (req: any, res: any) => {
   const logoutUrl = `${process.env.COGNITO_LOGOUT_URL}?client_id=${process.env.COGNITO_CLIENT_ID}&logout_uri=${process.env.FRONTEND_URL}`;
   req.session.destroy();
   res.clearCookie('at');
   res.clearCookie('rt');
   res.clearCookie('connect.sid');
-  return fetch(logoutUrl)
-    .then(() => res.status(200).json({}))
-    .catch((err) => {
-      console.error(err);
-      return res.status(500).send('Internal server error');
-    });
+  res.json({ url: logoutUrl });
 };

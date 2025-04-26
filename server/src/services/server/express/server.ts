@@ -33,9 +33,7 @@ export const server = (() => {
 })();
 
 function initCors(app: express.Application) {
-  const aws_url = new URL(process.env.COGNITO_LOGOUT_URL as string).origin;
-  console.log(aws_url);
-  const allowedOrigins = [process.env.FRONTEND_URL as string, aws_url];
+  const allowedOrigins = [process.env.FRONTEND_URL as string];
 
   const corsConfig = {
     origin: allowedOrigins,
