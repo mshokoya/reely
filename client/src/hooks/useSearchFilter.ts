@@ -13,10 +13,10 @@ const filter = observable({
     value: ['air conditioning', 'balcony', 'dishwasher', 'dryer', 'elevator', 'fireplace', 'garage', 'gym', 'laundry', 'microwave', 'parking', 'pool', 'refrigerator', 'stove', 'tv', 'washer'],
     options: ['air conditioning', 'balcony', 'dishwasher', 'dryer', 'elevator', 'fireplace', 'garage', 'gym', 'laundry', 'microwave', 'parking', 'pool', 'refrigerator', 'stove', 'tv', 'washer']
   },
+  yearBuilt: [0, 0],
   beds: { value: 0, options: [0, 1, 2, 3, 4, 5] },
   baths: { value: 0, options: [0, 1, 2, 3, 4, 5] },
   sort: { value: 'price', options: [] },
-  moveInDate: new Date(),
   location: '',
   view: 'grid',
 });

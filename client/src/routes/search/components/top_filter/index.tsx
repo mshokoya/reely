@@ -14,6 +14,7 @@ import { BedBath } from "./components/bed_bath_filter"
 import { PropertyType } from "./components/property_type_filter"
 import { Amenities } from "./components/amenities_filter"
 import { SquareFeet } from "./components/square_feet_filter"
+import { YearBuilt } from "./components/year_built_filter"
 
 
 const filter = searchFilter()
@@ -37,53 +38,25 @@ export const TopFilter = observer(() => {
       <PropertyType />
       <Amenities />
       <SquareFeet />
+      <YearBuilt />
       <Sort />
 
-      <div className="flex">
+      {/* <div className="flex">
         <button>Reset</button>
         <Separator />
         <button>Apply</button>
-      </div>
+      </div> */}
     </div>
   )
 })
 
-function SpecialityHousing() {
-  return (
-    <DropdownMenu>
-      <DropdownMenuTrigger>Price</DropdownMenuTrigger>
-      <DropdownMenuContent>
-        <DropdownMenuLabel>My Account</DropdownMenuLabel>
-        <DropdownMenuSeparator />
-        <DropdownMenuItem>Profile</DropdownMenuItem>
-        <DropdownMenuItem>Billing</DropdownMenuItem>
-        <DropdownMenuItem>Team</DropdownMenuItem>
-        <DropdownMenuItem>Subscription</DropdownMenuItem>
-      </DropdownMenuContent>
-    </DropdownMenu>
-  )
-}
 
-function MoveInDate() {
-  return (
-    <DropdownMenu>
-      <DropdownMenuTrigger>Price</DropdownMenuTrigger>
-      <DropdownMenuContent>
-        <DropdownMenuLabel>My Account</DropdownMenuLabel>
-        <DropdownMenuSeparator />
-        <DropdownMenuItem>Profile</DropdownMenuItem>
-        <DropdownMenuItem>Billing</DropdownMenuItem>
-        <DropdownMenuItem>Team</DropdownMenuItem>
-        <DropdownMenuItem>Subscription</DropdownMenuItem>
-      </DropdownMenuContent>
-    </DropdownMenu>
-  )
-}
+
 
 function Sort() {
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger>Price</DropdownMenuTrigger>
+      <DropdownMenuTrigger>Sort</DropdownMenuTrigger>
       <DropdownMenuContent>
         <DropdownMenuLabel>My Account</DropdownMenuLabel>
         <DropdownMenuSeparator />
