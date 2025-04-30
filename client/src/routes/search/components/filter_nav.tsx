@@ -10,6 +10,7 @@ import {
 import { Separator } from "@radix-ui/react-separator"
 import { observer } from "@legendapp/state/react"
 import { Price } from "./price_filter"
+import { BedBath } from "./bed_bath_filter"
 
 
 const filter = searchFilter()
@@ -43,22 +44,6 @@ export const FilterNav = observer(() => {
     </div>
   )
 })
-
-function BedBath() {
-  return (
-    <DropdownMenu>
-      <DropdownMenuTrigger>Price</DropdownMenuTrigger>
-      <DropdownMenuContent>
-        <DropdownMenuLabel>My Account</DropdownMenuLabel>
-        <DropdownMenuSeparator />
-        <DropdownMenuItem>Profile</DropdownMenuItem>
-        <DropdownMenuItem>Billing</DropdownMenuItem>
-        <DropdownMenuItem>Team</DropdownMenuItem>
-        <DropdownMenuItem>Subscription</DropdownMenuItem>
-      </DropdownMenuContent>
-    </DropdownMenu>
-  )
-}
 
 function HomeType() {
   return (
