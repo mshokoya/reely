@@ -1,9 +1,6 @@
 import { VIEW_HEIGHT } from "@/core/util"
-import { FilterNav } from "./components/filter_nav"
-import { FilterSidebar } from "./components/filter_sidebar"
-
-
-
+import { TopFilter } from "./components/top_filter";
+import { SidebarFilter } from "./components/sidebar_filter";
 
 export const Search = () => {
   return (
@@ -18,9 +15,9 @@ export const Search = () => {
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
     <div className="flex flex-col bg-green-300" style={{ height: VIEW_HEIGHT }}>
-      <FilterNav />
+      <TopFilter />
       <div className="flex h-full">
-        <FilterSidebar />
+        <SidebarFilter />
         <div className="basis-full">
         {children}
         </div>

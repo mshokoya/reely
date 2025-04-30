@@ -9,13 +9,15 @@ import {
 } from "@/components/ui/dropdown-menu"
 import { Separator } from "@radix-ui/react-separator"
 import { observer } from "@legendapp/state/react"
-import { Price } from "./price_filter"
-import { BedBath } from "./bed_bath_filter"
+import { Price } from "./components/price_filter"
+import { BedBath } from "./components/bed_bath_filter"
+import { PropertyType } from "./components/property_type_filter"
+import { Amenities } from "./components/amenities_filter"
 
 
 const filter = searchFilter()
 
-export const FilterNav = observer(() => {
+export const TopFilter = observer(() => {
   const handleLocationSearch = () => {
     console.log('search location')
   }
@@ -31,8 +33,8 @@ export const FilterNav = observer(() => {
 
       <Price />
       <BedBath />
-      <HomeType />
-      <SpecialityHousing />
+      <PropertyType />
+      <Amenities />
       <MoveInDate />
       <Sort />
 
@@ -44,38 +46,6 @@ export const FilterNav = observer(() => {
     </div>
   )
 })
-
-function HomeType() {
-  return (
-    <DropdownMenu>
-      <DropdownMenuTrigger>Price</DropdownMenuTrigger>
-      <DropdownMenuContent>
-        <DropdownMenuLabel>My Account</DropdownMenuLabel>
-        <DropdownMenuSeparator />
-        <DropdownMenuItem>Profile</DropdownMenuItem>
-        <DropdownMenuItem>Billing</DropdownMenuItem>
-        <DropdownMenuItem>Team</DropdownMenuItem>
-        <DropdownMenuItem>Subscription</DropdownMenuItem>
-      </DropdownMenuContent>
-    </DropdownMenu>
-  )
-}
-
-function SpecialityHousing() {
-  return (
-    <DropdownMenu>
-      <DropdownMenuTrigger>Price</DropdownMenuTrigger>
-      <DropdownMenuContent>
-        <DropdownMenuLabel>My Account</DropdownMenuLabel>
-        <DropdownMenuSeparator />
-        <DropdownMenuItem>Profile</DropdownMenuItem>
-        <DropdownMenuItem>Billing</DropdownMenuItem>
-        <DropdownMenuItem>Team</DropdownMenuItem>
-        <DropdownMenuItem>Subscription</DropdownMenuItem>
-      </DropdownMenuContent>
-    </DropdownMenu>
-  )
-}
 
 function MoveInDate() {
   return (

@@ -38,7 +38,7 @@ export const Price = observer(() => {
   }
 
   function calcNewMaxInMinField(price: number) {
-    const fullOpts = filter.priceRange.options.peek().map(v => parseInt(v))
+    const fullOpts = filter.priceRange.options.peek()
     const newMax = fullOpts.findIndex((e) => price <= e)
     const i = fullOpts.map(v => v.toString()).slice(0, newMax+1)
     minPriceRange.set(i)

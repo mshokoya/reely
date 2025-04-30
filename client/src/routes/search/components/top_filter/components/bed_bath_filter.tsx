@@ -8,12 +8,14 @@ export const BedBath = observer(() => {
   const bed = filter.beds.get();
   const bath = filter.baths.get();
 
-  const handleBedClick = (e) => {
+  const handleBedClick = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+    // @ts-expect-error dataset does not exist on target error
     const idx = parseInt(e.target.dataset.idx)
     filter.beds.value.set(bed.options[idx])
   }
 
-  const handleBathClick = (e) => {
+  const handleBathClick = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+    // @ts-expect-error dataset does not exist on target error
     const idx = parseInt(e.target.dataset.idx)
     filter.baths.value.set(bath.options[idx])
   }
