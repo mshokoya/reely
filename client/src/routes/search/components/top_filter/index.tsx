@@ -13,6 +13,7 @@ import { Price } from "./components/price_filter"
 import { BedBath } from "./components/bed_bath_filter"
 import { PropertyType } from "./components/property_type_filter"
 import { Amenities } from "./components/amenities_filter"
+import { SquareFeet } from "./components/square_feet_filter"
 
 
 const filter = searchFilter()
@@ -35,7 +36,7 @@ export const TopFilter = observer(() => {
       <BedBath />
       <PropertyType />
       <Amenities />
-      <MoveInDate />
+      <SquareFeet />
       <Sort />
 
       <div className="flex">
@@ -46,6 +47,22 @@ export const TopFilter = observer(() => {
     </div>
   )
 })
+
+function SpecialityHousing() {
+  return (
+    <DropdownMenu>
+      <DropdownMenuTrigger>Price</DropdownMenuTrigger>
+      <DropdownMenuContent>
+        <DropdownMenuLabel>My Account</DropdownMenuLabel>
+        <DropdownMenuSeparator />
+        <DropdownMenuItem>Profile</DropdownMenuItem>
+        <DropdownMenuItem>Billing</DropdownMenuItem>
+        <DropdownMenuItem>Team</DropdownMenuItem>
+        <DropdownMenuItem>Subscription</DropdownMenuItem>
+      </DropdownMenuContent>
+    </DropdownMenu>
+  )
+}
 
 function MoveInDate() {
   return (
