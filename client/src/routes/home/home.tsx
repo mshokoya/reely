@@ -1,7 +1,4 @@
-import { createRoute } from '@tanstack/react-router'
-import { rootRoute } from './root'
-
-function component() {
+export const Home = () => {
   return (
     <div>
     <header className='h-[calc(100vh-2.5rem)] bg-amber-950 flex justify-center items-center'>
@@ -64,9 +61,3 @@ function component() {
   )
   
 }
-
-export const homeRoute = createRoute({
-  getParentRoute: () => rootRoute,
-  path: '/',
-  component
-})

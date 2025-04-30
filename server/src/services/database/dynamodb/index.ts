@@ -1,5 +1,5 @@
 import { Database } from './database';
-import { applications, payments, properties, user_favorites, users, leases } from './schemas';
+// import { applications, payments, properties, user_favorites, users, leases } from './schemas';
 
 export const database = (() => {
   const database = new Database({
@@ -11,16 +11,16 @@ export const database = (() => {
     // endpoint: 'http://localhost:8000',
   });
 
-  (async () => {
-    await database.createDynamoDBTables([
-      applications.schema(),
-      payments.schema(),
-      properties.schema(),
-      user_favorites.schema(),
-      users.schema(),
-      leases.schema(),
-    ]);
-  })();
+  // (async () => {
+  //   await database.createDynamoDBTables([
+  //     applications.schema(),
+  //     payments.schema(),
+  //     properties.schema(),
+  //     user_favorites.schema(),
+  //     users.schema(),
+  //     leases.schema(),
+  //   ]);
+  // })();
 
   return database;
 })();

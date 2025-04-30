@@ -1,20 +1,8 @@
-import { rootRoute } from '../root';
-import { createRoute } from '@tanstack/react-router';
+import { cognitoAuthRoute } from '.';
 import { useAuth } from '../../core/providers/auth/auth_context';
 import { useMount } from '@legendapp/state/react';
 
-
-export const cognitoAuthRoute = createRoute({
-  validateSearch: (search: Record<string, unknown>) => ({
-    code: search.code,
-    state: search.state,
-  }),
-  getParentRoute: () => rootRoute,
-  path: '/auth/authorize',
-  component: CognitoAuth,
-})
-
-function CognitoAuth() {
+export const CognitoAuth = () => {
   const { user } = useAuth();
   const {state, code} = cognitoAuthRoute.useSearch();
 

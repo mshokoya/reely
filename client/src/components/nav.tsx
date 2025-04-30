@@ -2,6 +2,7 @@ import { useNavigate, useLocation } from "@tanstack/react-router"
 import { useAuth } from '../core/providers/auth/auth_context';
 import { useState } from "react";
 import { observer } from "@legendapp/state/react";
+import { SIDEBAR_HEIGHT } from "../core/util";
 
 export const Nav = observer(() => {
   const {login, user, logout} = useAuth();
@@ -40,7 +41,7 @@ export const Nav = observer(() => {
   }
 
   return (
-    <nav className="flex justify-between bg-amber-400 h-10 px-5 items-center">
+    <nav className={`flex justify-between bg-amber-400 px-5 items-center`} style={{height: SIDEBAR_HEIGHT}}>
       <div>Logo</div>
       <div>
         <button disabled={isLoading} onClick={accountClick}>Account</button>
