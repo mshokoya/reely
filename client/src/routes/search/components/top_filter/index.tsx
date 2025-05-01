@@ -1,13 +1,4 @@
 import searchFilter from "@/hooks/useSearchFilter"
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
-import { Separator } from "@radix-ui/react-separator"
 import { observer } from "@legendapp/state/react"
 import { Price } from "./components/price_filter"
 import { BedBath } from "./components/bed_bath_filter"
@@ -15,11 +6,11 @@ import { PropertyType } from "./components/property_type_filter"
 import { Amenities } from "./components/amenities_filter"
 import { SquareFeet } from "./components/square_feet_filter"
 import { YearBuilt } from "./components/year_built_filter"
-import { Select } from "@/components/ui/select"
 import { Sort } from "./components/sort_filter"
 
+export const TOP_FILTER_HEIGHT = '30px'
 
-const filter = searchFilter()
+const search = searchFilter()
 
 export const TopFilter = observer(() => {
   const handleLocationSearch = () => {
@@ -27,11 +18,11 @@ export const TopFilter = observer(() => {
   }
 
   return (
-    <div className="flex justify-between">
-      <button onClick={filter.openFilter.toggle}>All Filters</button>
+    <div className="flex justify-between" style={{height: TOP_FILTER_HEIGHT}}>
+      <button onClick={search.filter.openFilter.toggle}>All Filters</button>
       
       <div>
-        <input placeholder="Search location" value={filter.location.get()} onChange={(e) => {filter.location.set(e.target.value)}} />
+        <input placeholder="Search location" value={search.filter.location.get()} onChange={(e) => {search.filter.location.set(e.target.value)}} />
         <button onClick={handleLocationSearch}>S</button>
       </div>
 

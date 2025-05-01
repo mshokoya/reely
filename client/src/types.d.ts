@@ -2,6 +2,7 @@ type User = {
   id: string
   email: string
   userType: ('tenant' | 'manager')[]
+  likes: string[]
 }
 
 type Ouser = Observable<User | null>;
@@ -20,3 +21,26 @@ type IDTOKEN = {
   email: string
   picture: string
 }
+
+type PropertiesSchema = {
+  id: string;
+  name: string;
+  description: string;
+  pricePerMonth: number;
+  securityDeposit: number;
+  applicationFee: number;
+  photoUrls: string[];
+  amenities: string[];
+  highlights: string[];
+  isPetsAllowed: boolean;
+  isParkingIncluded: boolean;
+  beds: number;
+  baths: number;
+  squareFeet: number;
+  propertyType: string;
+  postedDate: Date;
+  averageRating: number;
+  numberOfReviews: number;
+  locationId: string;
+  userId: string;
+};

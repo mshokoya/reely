@@ -22,8 +22,8 @@ const filter = observable({
   view: 'grid',
 });
 
-const listings = observable({
-  data: [],
+const listings = observable<{ data: PropertiesSchema[], found: number, page: number }>({
+  data: tess(),
   found: 0,
   page: 1,
 })
@@ -31,3 +31,70 @@ const listings = observable({
 export default () => {
   return { filter, listings }
 }
+
+
+// ==================================================================
+// ==================================================================
+// ==================================================================
+// ==================================================================
+// ==================================================================
+
+function tess() {
+  function getRandomInt(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+  }
+
+  function randomItem(arr) {
+    return arr[getRandomInt(0, arr.length - 1)];
+  }
+
+  function randomSample(arr, size) {
+    const shuffled = [...arr].sort(() => 0.5 - Math.random());
+    return shuffled.slice(0, size);
+  }
+
+  function randomDate(start, end) {
+    const date = new Date(start.getTime() + Math.random() * (end.getTime() - start.getTime()));
+    return `new Date('${date.toLocaleDateString("en-US")}')`;
+  }
+
+  const streetNames = ["Main", "Oak", "Pine", "Maple", "Cedar", "Elm", "Birch", "Willow", "2nd", "3rd"];
+  const amenitiesPool = ['pool', 'washer', 'dryer', 'shower', 'gym', 'wifi', 'air conditioning', 'heating'];
+  const highlightsPool = ['newly renovated', 'close to downtown', 'great view', 'pet friendly', 'quiet neighborhood'];
+  const propertyTypes = ['Condo', 'Apartment', 'House', 'Studio'];
+  const address = []
+
+  const listings = [];
+
+  for (let i = 0; i < 50; i++) {
+    listings.push({
+      id: crypto.randomUUID(),
+      name: `${getRandomInt(100, 999)} ${randomItem(streetNames)} St`,
+      description: `${getRandomInt(1, 100)} this is the des ${getRandomInt(1, 100)}`,
+      pricePerMonth: getRandomInt(500, 5000),
+      securityDeposit: getRandomInt(100, 1000),
+      applicationFee: getRandomInt(50, 500),
+      photoUrls: ['https://example.com/photo1.jpg', 'https://example.com/photo2.jpg'],
+      amenities: randomSample(amenitiesPool, 3),
+      highlights: randomSample(highlightsPool, 3),
+      isPetsAllowed: Math.random() < 0.5,
+      isParkingIncluded: Math.random() < 0.5,
+      beds: getRandomInt(1, 5),
+      baths: getRandomInt(1, 3),
+      squareFeet: getRandomInt(300, 1500),
+      propertyType: randomItem(propertyTypes),
+      postedDate: randomDate(new Date(2019, 0, 1), new Date(2023, 11, 31)),
+      averageRating: getRandomInt(1, 5),
+      numberOfReviews: getRandomInt(0, 100),
+      locationId: crypto.randomUUID(),
+      userId: crypto.randomUUID(),
+
+      // ... other properties
+      address: 'Villa Kunta Selatan',
+      city: 'Bali, Indonesia',
+    });
+  }
+
+  return listings
+}
+
