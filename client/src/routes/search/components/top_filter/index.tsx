@@ -15,6 +15,8 @@ import { PropertyType } from "./components/property_type_filter"
 import { Amenities } from "./components/amenities_filter"
 import { SquareFeet } from "./components/square_feet_filter"
 import { YearBuilt } from "./components/year_built_filter"
+import { Select } from "@/components/ui/select"
+import { Sort } from "./components/sort_filter"
 
 
 const filter = searchFilter()
@@ -53,18 +55,3 @@ export const TopFilter = observer(() => {
 
 
 
-function Sort() {
-  return (
-    <DropdownMenu>
-      <DropdownMenuTrigger>Sort</DropdownMenuTrigger>
-      <DropdownMenuContent>
-        <DropdownMenuLabel>My Account</DropdownMenuLabel>
-        <DropdownMenuSeparator />
-        <DropdownMenuItem>Profile</DropdownMenuItem>
-        <DropdownMenuItem>Billing</DropdownMenuItem>
-        <DropdownMenuItem>Team</DropdownMenuItem>
-        <DropdownMenuItem>Subscription</DropdownMenuItem>
-      </DropdownMenuContent>
-    </DropdownMenu>
-  )
-}

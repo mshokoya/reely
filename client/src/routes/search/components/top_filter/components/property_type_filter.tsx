@@ -4,8 +4,8 @@ import useSearchFilter from "@/hooks/useSearchFilter";
 import { observer } from "@legendapp/state/react";
 
 export const PropertyType = observer(() => {
-  const filter = useSearchFilter();
-  const propertyType = filter.propertyType.get()
+  const search = useSearchFilter();
+  const propertyType = search.filter.propertyType.get()
 
   return (
     <DropdownMenu>
@@ -18,8 +18,8 @@ export const PropertyType = observer(() => {
                   checked={propertyType.value.includes(opt)} 
                   onCheckedChange={(checked) => {
                     return checked
-                      ? filter.propertyType.value.push(opt)
-                      : filter.propertyType.value.set((v) => v.filter((v) => v !== opt))
+                      ? search.filter.propertyType.value.push(opt)
+                      : search.filter.propertyType.value.set((v) => v.filter((v) => v !== opt))
                   }}
                   key={idx}/>
                   {opt}

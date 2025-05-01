@@ -4,8 +4,8 @@ import useSearchFilter from "@/hooks/useSearchFilter";
 import { observer } from "@legendapp/state/react";
 
 export const Amenities = observer(() => {
-  const filter = useSearchFilter();
-  const amenities = filter.amenities.get()
+  const search = useSearchFilter();
+  const amenities = search.filter.amenities.get()
 
   return (
     <DropdownMenu>
@@ -18,8 +18,8 @@ export const Amenities = observer(() => {
                   checked={amenities.value.includes(opt)} 
                   onCheckedChange={(checked) => {
                     return checked
-                      ? filter.amenities.value.push(opt)
-                      : filter.amenities.value.set((v) => v.filter((v) => v !== opt))
+                      ? search.filter.amenities.value.push(opt)
+                      : search.filter.amenities.value.set((v) => v.filter((v) => v !== opt))
                   }}
                   key={idx}/>
                   {opt}

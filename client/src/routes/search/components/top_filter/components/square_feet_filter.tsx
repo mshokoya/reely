@@ -8,16 +8,16 @@ import useSearchFilter from "@/hooks/useSearchFilter"
 
 
 export const SquareFeet = observer(() => {
-  const filter = useSearchFilter();
+  const search = useSearchFilter();
 
-  const range = filter.squareFeet.options.peek().map((e) => e.toString());
+  const range = search.filter.squareFeet.options.peek().map((e) => e.toString());
   const minSqFtRange = useObservable(range);
   const maxSqFtRange = useObservable(range);
 
   const handleSelectMin = (newMinValue: string) => {
     batch(() => {
       const fmtNewMinVal = parseInt(newMinValue)
-      filter.squareFeet.value[0].set(fmtNewMinVal);
+      search.filter.squareFeet.value[0].set(fmtNewMinVal);
       calcNewMinInMaxField(fmtNewMinVal)
     })
   }
@@ -25,20 +25,20 @@ export const SquareFeet = observer(() => {
   const handleSelectMax = (e: string) => {
   batch(() => {
     const fmtNewMaxVal = parseInt(e)
-    filter.squareFeet.value[1].set(fmtNewMaxVal);
+    search.filter.squareFeet.value[1].set(fmtNewMaxVal);
     calcNewMaxInMinField(fmtNewMaxVal)
   })
   }
 
   function calcNewMinInMaxField(newMinSqFt: number) {
-    const fullOpts = filter.squareFeet.options.peek()
+    const fullOpts = search.filter.squareFeet.options.peek()
     const newMin = fullOpts.findIndex((e) => newMinSqFt <= e)
     const i = fullOpts.map(v => v.toString()).slice(newMin, 100)
     maxSqFtRange.set(i)
   }
 
   function calcNewMaxInMinField(sqft: number) {
-    const fullOpts = filter.squareFeet.options.peek()
+    const fullOpts = search.filter.squareFeet.options.peek()
     const newMax = fullOpts.findIndex((e) => sqft <= e)
     const i = fullOpts.map(v => v.toString()).slice(0, newMax+1)
     minSqFtRange.set(i)
@@ -50,7 +50,7 @@ export const SquareFeet = observer(() => {
       <PopoverContent>
 
         {/* ======= MINIMUM PRICE RANGE ======= */}
-        <Select onValueChange={handleSelectMin} defaultValue="No Min" value={filter.squareFeet.value.get()[0].toString()}>
+        <Select onValueChange={handleSelectMin} defaultValue="No Min" value={search.filter.squareFeet.value.get()[0].toString()}>
           <SelectTrigger>
             <SelectValue placeholder="No Min" />
           </SelectTrigger>
@@ -69,7 +69,7 @@ export const SquareFeet = observer(() => {
         {/*  ======= END ======= */}
 
         {/* ======= MAXIMUM PRICE RANGE ======= */}
-        <Select onValueChange={handleSelectMax} defaultValue="No Max" value={filter.squareFeet.value.get()[1].toString()}>
+        <Select onValueChange={handleSelectMax} defaultValue="No Max" value={search.filter.squareFeet.value.get()[1].toString()}>
           <SelectTrigger>
             <SelectValue placeholder="No Max" />
           </SelectTrigger>

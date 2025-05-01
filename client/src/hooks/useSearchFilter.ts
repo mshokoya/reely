@@ -1,4 +1,5 @@
 import { observable } from "@legendapp/state";
+import { use } from "react";
 // import { useObservable } from "@legendapp/state/react"
 
 const filter = observable({
@@ -16,11 +17,17 @@ const filter = observable({
   yearBuilt: [0, 0],
   beds: { value: 0, options: [0, 1, 2, 3, 4, 5] },
   baths: { value: 0, options: [0, 1, 2, 3, 4, 5] },
-  sort: { value: 'price', options: [] },
+  sort: { value: 'Newest', options: ['Homes for you', 'Price (High to low)', 'Price (Low to high)', 'Newest', 'Bathrooms', 'Bedrooms'] },
   location: '',
   view: 'grid',
 });
 
+const listings = observable({
+  data: [],
+  found: 0,
+  page: 1,
+})
+
 export default () => {
-  return filter
+  return { filter, listings }
 }

@@ -8,16 +8,16 @@ import useSearchFilter from "@/hooks/useSearchFilter"
 
 
 export const Price = observer(() => {
-  const filter = useSearchFilter();
+  const search = useSearchFilter();
 
-  const range = filter.priceRange.options.peek().map((e) => e.toString());
+  const range = search.filter.priceRange.options.peek().map((e) => e.toString());
   const minPriceRange = useObservable(range);
   const maxPriceRange = useObservable(range);
 
   const handleSelectMin = (newMinValue: string) => {
     batch(() => {
       const fmtNewMinVal = parseInt(newMinValue)
-      filter.priceRange.value[0].set(fmtNewMinVal);
+      search.filter.priceRange.value[0].set(fmtNewMinVal);
       calcNewMinInMaxField(fmtNewMinVal)
     })
   }
@@ -25,20 +25,20 @@ export const Price = observer(() => {
   const handleSelectMax = (e: string) => {
   batch(() => {
     const fmtNewMaxVal = parseInt(e)
-    filter.priceRange.value[1].set(fmtNewMaxVal);
+    search.filter.priceRange.value[1].set(fmtNewMaxVal);
     calcNewMaxInMinField(fmtNewMaxVal)
   })
   }
 
   function calcNewMinInMaxField(newMinPrice: number) {
-    const fullOpts = filter.priceRange.options.peek()
+    const fullOpts = search.filter.priceRange.options.peek()
     const newMin = fullOpts.findIndex((e) => newMinPrice <= e)
     const i = fullOpts.map(v => v.toString()).slice(newMin, 100)
     maxPriceRange.set(i)
   }
 
   function calcNewMaxInMinField(price: number) {
-    const fullOpts = filter.priceRange.options.peek()
+    const fullOpts = search.filter.priceRange.options.peek()
     const newMax = fullOpts.findIndex((e) => price <= e)
     const i = fullOpts.map(v => v.toString()).slice(0, newMax+1)
     minPriceRange.set(i)
@@ -50,7 +50,7 @@ export const Price = observer(() => {
       <PopoverContent>
 
         {/* ======= MINIMUM PRICE RANGE ======= */}
-        <Select onValueChange={handleSelectMin} defaultValue="No Min" value={filter.priceRange.value.get()[0].toString()}>
+        <Select onValueChange={handleSelectMin} defaultValue="No Min" value={search.filter.priceRange.value.get()[0].toString()}>
           <SelectTrigger>
             <SelectValue placeholder="No Min" />
           </SelectTrigger>
@@ -69,7 +69,7 @@ export const Price = observer(() => {
         {/*  ======= END ======= */}
 
         {/* ======= MAXIMUM PRICE RANGE ======= */}
-        <Select onValueChange={handleSelectMax} defaultValue="No Max" value={filter.priceRange.value.get()[1].toString()}>
+        <Select onValueChange={handleSelectMax} defaultValue="No Max" value={search.filter.priceRange.value.get()[1].toString()}>
           <SelectTrigger>
             <SelectValue placeholder="No Max" />
           </SelectTrigger>

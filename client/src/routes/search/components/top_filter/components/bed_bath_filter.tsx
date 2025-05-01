@@ -3,21 +3,21 @@ import useSearchFilter from "@/hooks/useSearchFilter";
 import { observer } from "@legendapp/state/react";
 
 export const BedBath = observer(() => {
-  const filter = useSearchFilter();
+  const search = useSearchFilter();
 
-  const bed = filter.beds.get();
-  const bath = filter.baths.get();
+  const bed = search.filter.beds.get();
+  const bath = search.filter.baths.get();
 
   const handleBedClick = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     // @ts-expect-error dataset does not exist on target error
     const idx = parseInt(e.target.dataset.idx)
-    filter.beds.value.set(bed.options[idx])
+    search.filter.beds.value.set(bed.options[idx])
   }
 
   const handleBathClick = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     // @ts-expect-error dataset does not exist on target error
     const idx = parseInt(e.target.dataset.idx)
-    filter.baths.value.set(bath.options[idx])
+    search.filter.baths.value.set(bath.options[idx])
   }
 
   return (

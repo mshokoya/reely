@@ -4,8 +4,8 @@ import { DropdownMenu, DropdownMenuContent, DropdownMenuTrigger } from "@/compon
 import { Input } from "@/components/ui/input";
 
 export const YearBuilt = observer(() => {
-  const filter = useSearchFilter();
-  const yearBuilt = filter.yearBuilt.get()
+  const search = useSearchFilter();
+  const yearBuilt = search.filter.yearBuilt.get()
   const yearsInput = useObservable([0,0])
 
   const handleOnBlur = (evt: React.FocusEvent<HTMLInputElement, Element>, side: 'left' | 'right') => {
@@ -15,12 +15,12 @@ export const YearBuilt = observer(() => {
       return val > yearBuilt[1]
       ? (// @ts-expect-error - this is a bug in the library yearBuilt[0] is observable/proxy, you must chage to plane number
         yearsInput[0].set(parseInt(yearBuilt[0])) 
-      ) : ( filter.yearBuilt[0].set(val) )
+      ) : ( search.filter.yearBuilt[0].set(val) )
     } else {
       return val < yearBuilt[0]
         ? (// @ts-expect-error - this is a bug in the library yearBuilt[0] is observable/proxy, you must chage to plane number
           yearsInput[1].set(parseInt(yearBuilt[1]))
-        ) : ( filter.yearBuilt[1].set(val) )
+        ) : ( search.filter.yearBuilt[1].set(val) )
     }
   }
 
