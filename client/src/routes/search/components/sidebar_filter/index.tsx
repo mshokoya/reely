@@ -8,7 +8,7 @@ export const SidebarFilter = observer(() => {
   const display = `${search.filter.openFilter.get() ? 'none' : 'block'}`;
   
   return (
-    <div style={{width, display}}>
+    <div className='absolute top-0 bottom-0 left-0 z-100 bg-amber-300' style={{width, display}}>
       <h1>Property Type</h1>
       <h1>Application</h1>
       <h1>Convenience</h1>

@@ -43,4 +43,13 @@ type PropertiesSchema = {
   numberOfReviews: number;
   locationId: string;
   userId: string;
+
+  // location
+  address: string;
+  city: string;
+  state: string;
+  country: string;
+  postalCode: string;
+  coordinates: [number, number];
+
 };

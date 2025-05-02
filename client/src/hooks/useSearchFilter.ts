@@ -1,6 +1,4 @@
 import { observable } from "@legendapp/state";
-import { use } from "react";
-// import { useObservable } from "@legendapp/state/react"
 
 const filter = observable({
   openFilter: false,
@@ -20,24 +18,44 @@ const filter = observable({
   sort: { value: 'Newest', options: ['Homes for you', 'Price (High to low)', 'Price (Low to high)', 'Newest', 'Bathrooms', 'Bedrooms'] },
   location: '',
   view: 'grid',
+  coordinates: [-74.5, 40]
 });
 
 const listings = observable<{ data: PropertiesSchema[], found: number, page: number }>({
-  data: tess(),
+  data: (tess() as unknown) as PropertiesSchema[],
   found: 0,
   page: 1,
 })
 
+const isLoading = observable(false)
+
 export default () => {
-  return { filter, listings }
+  return { filter, listings, isLoading }
 }
 
 
+
+
+
+
+
+
+
+
+
 // ==================================================================
 // ==================================================================
 // ==================================================================
 // ==================================================================
 // ==================================================================
+
+
+
+
+
+
+
+
 
 function tess() {
   function getRandomInt(min, max) {
@@ -62,7 +80,6 @@ function tess() {
   const amenitiesPool = ['pool', 'washer', 'dryer', 'shower', 'gym', 'wifi', 'air conditioning', 'heating'];
   const highlightsPool = ['newly renovated', 'close to downtown', 'great view', 'pet friendly', 'quiet neighborhood'];
   const propertyTypes = ['Condo', 'Apartment', 'House', 'Studio'];
-  const address = []
 
   const listings = [];
 
@@ -92,9 +109,34 @@ function tess() {
       // ... other properties
       address: 'Villa Kunta Selatan',
       city: 'Bali, Indonesia',
+      coordinates: generateNearbyCoordinates()
+      // [-74.5, 40],
     });
   }
 
   return listings
 }
 
+
+
+
+
+
+
+// ==================================================================
+// ==================================================================
+// ==================================================================
+// ==================================================================
+// ==================================================================
+
+
+
+
+
+
+
+function generateNearbyCoordinates(offset = 0.001) {
+  const lon = -73.968285 + (Math.random() - 0.5) * 2 * offset;
+  const lat = 40.785091 + (Math.random() - 0.5) * 2 * offset;
+  return [parseFloat(lon.toFixed(6)), parseFloat(lat.toFixed(6))]
+}
