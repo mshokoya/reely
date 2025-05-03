@@ -12,30 +12,30 @@ export const Map = observer(() => {
   // const auth = useAuth()
 
   useEffect(() => {
-    if (search.isLoading.get()) return
-    if (!mapRef.current) return
-    console.log(mapRef.current)
-    const map = new mapboxgl.Map({
-      container: mapRef.current!,
-      style: "mapbox://styles/mapbox/streets-v11",
-      // style: "mapbox://styles/majesticglue/cm6u301pq008b01sl7yk1cnvb",
-      center: search.filter.coordinates.peek(),
-      zoom: 9,
-    });
+    // if (search.isLoading.get()) return
+    // if (!mapRef.current) return
+    // console.log(mapRef.current)
+    // const map = new mapboxgl.Map({
+    //   container: mapRef.current!,
+    //   style: "mapbox://styles/mapbox/streets-v11",
+    //   // style: "mapbox://styles/majesticglue/cm6u301pq008b01sl7yk1cnvb",
+    //   center: search.filter.coordinates.peek() as [number, number],
+    //   zoom: 9,
+    // });
 
-    search.listings.data.peek().forEach((listing) => {
-      const marker = createPropertyMarker(listing, map);
-      const markerElement = marker.getElement();
-      const path = markerElement.querySelector("path[fill='#3FB1CE']");
-      if (path) path.setAttribute("fill", "#000000");
-    })
+    // search.listings.data.peek().forEach((listing) => {
+    //   const marker = createPropertyMarker(listing, map);
+    //   const markerElement = marker.getElement();
+    //   const path = markerElement.querySelector("path[fill='#3FB1CE']");
+    //   if (path) path.setAttribute("fill", "#000000");
+    // })
 
-    const resizeMap = () => {
-      if (map) setTimeout(() => map.resize(), 700);
-    };
-    resizeMap();
+    // const resizeMap = () => {
+    //   if (map) setTimeout(() => map.resize(), 700);
+    // };
+    // resizeMap();
 
-    return () => map && map.remove();
+    // return () => map && map.remove();
   }, [search.filter.coordinates.get(), mapRef.current]);
 
   return (
@@ -46,7 +46,7 @@ export const Map = observer(() => {
         style={{
           height: "100%",
           width: "100%",
-          zIndex:100
+          // zIndex:100
         }}
       />
     </div>

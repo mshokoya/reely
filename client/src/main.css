@@ -67,7 +67,7 @@
   @apply pt-8 pb-5 px-8;
 }
 
-.mapboxgl-popup-content {
+/* .mapboxgl-popup-content {
   @apply !bg-primary-700;
   @apply !rounded-lg;
   @apply !py-2;
@@ -116,10 +116,13 @@
 
 .marker-popup-price-unit {
   @apply text-xs text-primary-500 font-normal;
-}
+} */
+
+
 
 /* scrollbar styling */
-::-webkit-scrollbar {
+
+/* ::-webkit-scrollbar {
   width: 5px;
 }
 
@@ -143,88 +146,23 @@
   body {
     @apply bg-background text-foreground;
   }
-}
-
-/* Amplify UI Overrides */
-[data-amplify-authenticator] {
-  --amplify-components-button-primary-background-color: var(--primary);
-  --amplify-components-button-primary-hover-background-color: hsl(
-    var(--primary) / 0.9
-  );
-  --amplify-components-button-border-radius: var(--radius);
-  --amplify-components-fieldcontrol-border-radius: var(--radius);
-}
-
-[data-amplify-authenticator][data-variation="default"] {
-  height: 100%;
-  padding: 2rem !important;
-}
-
-[data-amplify-authenticator] [data-amplify-router] {
-  border: none !important;
-  box-shadow: none !important;
-  max-width: 400px !important;
-  margin: 0 auto;
-}
-
-[data-amplify-authenticator] [data-amplify-container] {
-  border-radius: var(--radius);
-  padding: 2rem !important;
-  border: 1px solid hsl(var(--border));
-}
-
-[data-amplify-authenticator] [data-amplify-form] {
-  padding: 0 !important;
-}
-
-[data-amplify-authenticator] .amplify-tabs__list {
-  display: none;
-}
-
-[data-amplify-authenticator] .amplify-button--primary {
-  width: 100%;
-  height: 2.75rem;
-  margin-top: 1rem;
-  background-color: hsl(var(--primary)) !important;
-  color: hsl(var(--primary-foreground)) !important;
-  @apply font-medium;
-  @apply text-sm;
-}
-
-[data-amplify-authenticator] .amplify-button--primary:hover {
-  background-color: hsl(var(--primary) / 0.8) !important;
-}
-
-[data-amplify-authenticator] .amplify-field-group__control {
-  border-color: hsl(var(--input));
-}
-
-[data-amplify-authenticator] .amplify-field-group__control:focus-within {
-  border-color: hsl(var(--ring)) !important;
-  box-shadow: 0 0 0 1px hsl(var(--ring)) !important;
-}
-
-[data-amplify-authenticator] .amplify-field__show-password {
-  color: hsl(var(--muted-foreground));
-}
-
-[data-amplify-authenticator] .amplify-label {
-  @apply text-sm font-medium;
-  color: hsl(var(--foreground));
-}
-
-[data-amplify-authenticator] .amplify-select {
-  border-color: hsl(var(--input));
-  border-radius: var(--radius);
-  height: 2.5rem;
-  @apply text-sm;
-}
-
-[data-amplify-authenticator] .amplify-text--error {
-  color: #ff0000;
-}
+} */
 
 /* Sonner Toast Styles */
-[data-close-button="true"] {
+/* [data-close-button="true"] {
   @apply bg-background border-border text-foreground hover:bg-muted;
+} */
+
+[data-slot="slider-track"] {
+  background-color: rgba(57, 56, 59, .5);
+}
+
+[data-slot="slider-range"] {
+  background-color: rgb(9, 9, 11);
+}
+
+[data-slot="slider-thumb"] {
+  background-color: rgb(9, 9, 11);
+  width: 5px;
+  height: 15px;
 }

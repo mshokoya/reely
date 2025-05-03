@@ -3,14 +3,14 @@ import { observable } from "@legendapp/state";
 const filter = observable({
   openFilter: false,
   propertyType: {
-    value: ['Townhouse', 'Apartment', 'Condo', 'House', 'Land', 'Manufactured'],
-    options: ['Townhouse', 'Apartment', 'Condo', 'House', 'Land', 'Manufactured']
+    value: ['Tinyhouse', 'Apartment', 'Cottage', 'Villa', 'Townhouse', 'House'],
+    options: ['Tinyhouse', 'Apartment', 'Cottage', 'Villa', 'Townhouse', 'House']
   },
   priceRange: { value: [0, 100000], options: [0, 10000, 20000, 30000, 40000, 50000, 60000, 70000, 80000, 90000, 100000] },
-  squareFeet: { value: [0, 3500], options: [500, 750, 1000, 1250, 1500, 1750, 2000, 2250, 2500, 2750, 3000, 3500] },
+  squareFeet: { value: [500, 3500], options: [500, 750, 1000, 1250, 1500, 1750, 2000, 2250, 2500, 2750, 3000, 3500] },
   amenities: {
-    value: ['air conditioning', 'balcony', 'dishwasher', 'dryer', 'elevator', 'fireplace', 'garage', 'gym', 'laundry', 'microwave', 'parking', 'pool', 'refrigerator', 'stove', 'tv', 'washer'],
-    options: ['air conditioning', 'balcony', 'dishwasher', 'dryer', 'elevator', 'fireplace', 'garage', 'gym', 'laundry', 'microwave', 'parking', 'pool', 'refrigerator', 'stove', 'tv', 'washer']
+    value: ['AirConditioning', 'WasherDryer', 'Dishwasher', 'HighSpeedInternet', 'HardwoodFloors', 'WalkInClosets', 'Microwave', 'Refrigerator', 'Pool', 'Gym', 'Parking', 'PetsAllowed', 'WiFi'],
+    options: ['AirConditioning', 'WasherDryer', 'Dishwasher', 'HighSpeedInternet', 'HardwoodFloors', 'WalkInClosets', 'Microwave', 'Refrigerator', 'Pool', 'Gym', 'Parking', 'PetsAllowed', 'WiFi']
   },
   yearBuilt: [0, 0],
   beds: { value: 0, options: [0, 1, 2, 3, 4, 5] },

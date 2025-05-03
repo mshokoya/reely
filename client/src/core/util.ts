@@ -1,3 +1,46 @@
+import {
+  Wifi,
+  Waves,
+  Dumbbell,
+  Car,
+  PawPrint,
+  Tv,
+  Thermometer,
+  Maximize,
+  Home,
+  Warehouse,
+  Building,
+  Castle,
+  Trees,
+  LucideIcon,
+} from "lucide-react";
+
+
+export const PropertyTypeIcons: Record<string, LucideIcon> = {
+  House: Home,
+  Tinyhouse: Warehouse,
+  Apartment: Building,
+  Villa: Castle,
+  Townhouse: Home,
+  Cottage: Trees,
+};
+
+export const AmenityIcons: Record<string, LucideIcon> = {
+  WasherDryer: Waves,
+  AirConditioning: Thermometer,
+  Dishwasher: Waves,
+  HighSpeedInternet: Wifi,
+  HardwoodFloors: Home,
+  WalkInClosets: Maximize,
+  Microwave: Tv,
+  Refrigerator: Thermometer,
+  Pool: Waves,
+  Gym: Dumbbell,
+  Parking: Car,
+  PetsAllowed: PawPrint,
+  WiFi: Wifi,
+};
+
 
 export const SIDEBAR_HEIGHT = '40px'
 export const VIEW_HEIGHT = `calc(100vh - ${SIDEBAR_HEIGHT})`
