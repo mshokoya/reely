@@ -13,7 +13,34 @@ import {
   Castle,
   Trees,
   LucideIcon,
+  Cigarette,
+  Cable,
+  Bath,
+  Phone,
+  Sprout,
+  Hammer,
+  Bus,
+  Mountain,
+  VolumeX,
 } from "lucide-react";
+
+export const HighlightIcons: Record<string, LucideIcon> = {
+  HighSpeedInternetAccess: Wifi,
+  WasherDryer: Waves,
+  AirConditioning: Thermometer,
+  Heating: Thermometer,
+  SmokeFree: Cigarette,
+  CableReady: Cable,
+  SatelliteTV: Tv,
+  DoubleVanities: Maximize,
+  TubShower: Bath,
+  Intercom: Phone,
+  SprinklerSystem: Sprout,
+  RecentlyRenovated: Hammer,
+  CloseToTransit: Bus,
+  GreatView: Mountain,
+  QuietNeighborhood: VolumeX,
+};
 
 
 export const PropertyTypeIcons: Record<string, LucideIcon> = {
@@ -65,4 +92,8 @@ export const fetch_api = async <T = unknown>({ url, method = 'GET', headers = {}
       if (!res.ok) throw new Error(await res.text());
       return await res.json() as T
     })
+}
+
+export function formatEnumString(str: string) {
+  return str.replace(/([A-Z])/g, " $1").trim();
 }

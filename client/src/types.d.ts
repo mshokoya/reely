@@ -41,7 +41,6 @@ type PropertiesSchema = {
   postedDate: Date;
   averageRating: number;
   numberOfReviews: number;
-  locationId: string;
   userId: string;
 
   // location

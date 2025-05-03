@@ -5,6 +5,7 @@ import { cognitoAuthRoute, loginRoute } from './auth'
 import { managersDashboardRoute } from './managers'
 import { homeRoute } from './home'
 import { searchRoute } from './search'
+import { propertyRoute } from './property'
 
 export const rootRoute = createRootRoute({
   component: () => (
@@ -20,5 +21,6 @@ export const rootTree = rootRoute.addChildren([
   homeRoute,
   loginRoute,
   cognitoAuthRoute,
-  searchRoute
+  searchRoute,
+  propertyRoute
 ])

@@ -83,7 +83,7 @@ function tess() {
 
   const listings = [];
 
-  for (let i = 0; i < 50; i++) {
+  for (let i = 0; i < 10; i++) {
     listings.push({
       id: crypto.randomUUID(),
       name: `${getRandomInt(100, 999)} ${randomItem(streetNames)} St`,
@@ -91,7 +91,12 @@ function tess() {
       pricePerMonth: getRandomInt(500, 5000),
       securityDeposit: getRandomInt(100, 1000),
       applicationFee: getRandomInt(50, 500),
-      photoUrls: ['https://example.com/photo1.jpg', 'https://example.com/photo2.jpg'],
+      photoUrls: [
+        'https://images.pexels.com/photos/186077/pexels-photo-186077.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+        'https://images.pexels.com/photos/259588/pexels-photo-259588.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+        'https://images.pexels.com/photos/2343465/pexels-photo-2343465.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+        'https://images.pexels.com/photos/1693946/pexels-photo-1693946.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+      ],
       amenities: randomSample(amenitiesPool, 3),
       highlights: randomSample(highlightsPool, 3),
       isPetsAllowed: Math.random() < 0.5,
@@ -108,7 +113,10 @@ function tess() {
 
       // ... other properties
       address: 'Villa Kunta Selatan',
-      city: 'Bali, Indonesia',
+      city: 'Bali',
+      postalCode: '80361',
+      country: 'India',
+      state: 'Indonesia',
       coordinates: generateNearbyCoordinates()
       // [-74.5, 40],
     });
