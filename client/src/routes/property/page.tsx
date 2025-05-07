@@ -5,7 +5,7 @@ import { Details } from "./components/details";
 import { Location } from "./components/location";
 
 export const Property = () => {
-  const property = propertyRoute.useLoaderData() as PropertiesSchema;
+  const property = propertyRoute.useLoaderData() as Property;
 
   return (
     <div>

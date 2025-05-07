@@ -1,6 +1,8 @@
 type User = {
   id: string
   email: string
+  phoneNumber: string
+  name: string
   userType: ('tenant' | 'manager')[]
   likes: string[]
 }
@@ -22,7 +24,37 @@ type IDTOKEN = {
   picture: string
 }
 
-type PropertiesSchema = {
+// type PropertiesSchema = {
+//   id: string;
+//   name: string;
+//   description: string;
+//   pricePerMonth: number;
+//   securityDeposit: number;
+//   applicationFee: number;
+//   photoUrls: string[];
+//   amenities: string[];
+//   highlights: string[];
+//   isPetsAllowed: boolean;
+//   isParkingIncluded: boolean;
+//   beds: number;
+//   baths: number;
+//   squareFeet: number;
+//   propertyType: string;
+//   postedDate: Date;
+//   averageRating: number;
+//   numberOfReviews: number;
+//   userId: string;
+
+//   // location
+//   address: string;
+//   city: string;
+//   state: string;
+//   country: string;
+//   postalCode: string;
+//   coordinates: [number, number];
+// };
+
+type PropertySchema = {
   id: string;
   name: string;
   description: string;
@@ -38,7 +70,7 @@ type PropertiesSchema = {
   baths: number;
   squareFeet: number;
   propertyType: string;
-  postedDate: Date;
+  postedDate: string;
   averageRating: number;
   numberOfReviews: number;
   userId: string;
@@ -50,5 +82,96 @@ type PropertiesSchema = {
   country: string;
   postalCode: string;
   coordinates: [number, number];
-
 };
+
+
+type Property = {
+  id: string;
+  name: string;
+  description: string;
+  pricePerMonth: number;
+  securityDeposit: number;
+  applicationFee: number;
+  photoUrls: string[];
+  amenities: string[];
+  highlights: string[];
+  isPetsAllowed: boolean;
+  isParkingIncluded: boolean;
+  beds: number;
+  baths: number;
+  squareFeet: number;
+  propertyType: string;
+  postedDate: string;
+  averageRating: number;
+  numberOfReviews: number;
+  user: User;
+
+  // location
+  address: string;
+  city: string;
+  state: string;
+  country: string;
+  postalCode: string;
+  coordinates: [number, number];
+};
+
+type Lease = {
+  id: string,
+  startDate: string
+  endDate: string
+  rent: number
+  deposit: number
+
+  nextPaymentDate: string
+  property: Property
+  tenant: User
+  application: Application
+  payments: Payment[]
+}
+
+type Payment = {
+  id: string
+  amountDue: number
+  amountPaid: number
+  dueDate: string
+  paymentDate: string
+  paymentStatus: 'Pending' | 'Paid' | 'PartiallyPaid' | 'Overdue'
+  lease: Lease
+}
+
+type Application = {
+  id: string;
+  applicationDate: string;
+  status: 'Pending' | 'Approved' | 'Rejected' | "Denied";
+  property: Property;
+  manager: User;
+  tenant: User;
+  name: string;
+  email: string;
+  phone: string;
+  message: string;
+  lease: Lease;
+};
+
+// const app1 = {
+//   id: '123id',
+//   applicationDate: '2021-01-01',
+//   status: 'Pending',
+//   property: {
+//     id: '123id',
+//     name: 'Property 1',
+//     description: 'Description'
+//   },
+//   manager: {
+//     id: '123id',
+//     name: 'Manager 1',
+//     email: 'manager1@example.com',
+//     phoneNumber: '1234567890',
+//     userType: ['manager'],
+//     likes: ['123id']
+//   },
+//   tenant: {
+//     id: '123id',
+//     name: 'Tenant 1',
+//     email: 'tenant1@
+// }

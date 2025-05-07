@@ -17,7 +17,7 @@ export const ImageSlider = observer(({imagesSrc}: {imagesSrc: string[]}) => {
 
   return (
     <section >
-      <div className='relative h-[450px] w-full'>
+      <div className='relative h-[450px] flex justify-center w-full'>
         <img className='object-cover h-full' src={imagesSrc[idx.get()]} alt="Property Image" />
         <span className='absolute top-1/2 left-5' onClick={() => handleClick('l')}><ArrowLeft/></span>
         <span className='absolute top-1/2 right-5' onClick={() => handleClick('r')}><ArrowRight/></span>
