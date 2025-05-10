@@ -1,24 +1,20 @@
 import { createRoute } from "@tanstack/react-router";
-import { Account } from "./account";
-import { rootRoute } from "../root";
+// import { rootRoute } from "../root";
 import { getApplications } from "@/core/actions/application_actions";
 import { ManagerApplications } from "./manager/application";
-import { getFavoriteProperties, getProperties, getResidences, getUserProperty } from "@/core/actions/property_actions";
+import { getFavoriteProperties, getUserProperty } from "@/core/actions/property_actions";
 import { ManagerProperties } from "./manager/properties";
 import { ManagerProperty } from "./manager/property";
 import { TenentApplications } from "./tenant/applications";
 import { Favorites } from "./tenant/favorites";
 import { Residence } from "./tenant/residence";
-
-export const accountRoute = createRoute({
-  getParentRoute: () => rootRoute,
-  path: '/account',
-  component: Account
-})
+import { accountLayout } from ".";
+import { Property } from "../property/page";
+import { getPropertyy } from "@/mock/mock";
 
 export const managerApplicationRoute = createRoute({
-  getParentRoute: () => rootRoute,
-  path: '/account/manager/$uid/applications',
+  getParentRoute: () => accountLayout,
+  path: '/manager/$uid/applications',
   // validateSearch: (search: Record<string, string>) => {
   //   if (!search.uid) throw new Error('failed to get load page (u)')
   //   return {userId: search.uid}
@@ -30,18 +26,19 @@ export const managerApplicationRoute = createRoute({
 })
 
 export const managerPropertiesRoute = createRoute({
-  getParentRoute: () => rootRoute,
-  path: '/account/manager/properties',
-  loader: async () => {
-    return await getProperties()
-  },
+  getParentRoute: () => accountLayout,
+  path: '/manager/properties',
+  // loader: async () => {
+  //   console.log('in err')
+  //   return await getProperties()
+  // },
   component: ManagerProperties
 })
 
 // TODO: create route that fetches property, leases, and payments...
 export const managerPropertyRoute = createRoute({
-  getParentRoute: () => rootRoute,
-  path: '/account/manager/property/$pid',
+  getParentRoute: () => accountLayout,
+  path: '/manager/property/$pid',
   loader: async ({ params }) => {
     const { pid } = params
 
@@ -55,17 +52,18 @@ export const managerPropertyRoute = createRoute({
 })
 
 export const tenantApplicationRoute = createRoute({
-  getParentRoute: () => rootRoute,
-  path: '/account/tenant/applications',
-  loader: async () => {
-    return await getApplications()
-  },
+  getParentRoute: () => accountLayout,
+  // getParentRoute: () => rootRoute,
+  path: '/tenant/applications',
+  // loader: async () => {
+  //   return await getApplications()
+  // },
   component: TenentApplications
 })
 
 export const tenantFavoritePropertiesRoute = createRoute({
-  getParentRoute: () => rootRoute,
-  path: '/account/tenant/favorites',
+  getParentRoute: () => accountLayout,
+  path: '/tenant/favorites',
   loader: async () => {
     return await getFavoriteProperties()
   },
@@ -73,20 +71,39 @@ export const tenantFavoritePropertiesRoute = createRoute({
 })
 
 export const tenantResidenceRoute = createRoute({
-  getParentRoute: () => rootRoute,
-  path: '/account/tenant/residence/$pid',
-  loader: async ({ params }) => {
-    const { pid } = params
-    return await getUserProperty(pid, 'tenant')
-  },
+  getParentRoute: () => accountLayout,
+  path: '/tenant/residence/$pid',
+  // loader: async ({ params }) => {
+  //   const { pid } = params
+  //   return await getUserProperty(pid, 'tenant')
+  // },
   component: Residence
 })
 
 export const tenantResidencesRoute = createRoute({
-  getParentRoute: () => rootRoute,
-  path: '/account/tenant/residences',
-  loader: async () => {
-    return await getResidences()
-  },
+  getParentRoute: () => accountLayout,
+  path: '/tenant/residences',
+  // loader: async () => {
+  //   return await getResidences()
+  // },
   component: Residence
 })
+
+export const tenantPropertyRoute = createRoute({
+  getParentRoute: () => accountLayout,
+  path: '/tenant/property/$pid',
+  // loader: async () => {
+  //   return await getResidences()
+  // },
+  loader: async ({ params: { pid } }) => await fetchProperty(pid),
+  component: Property
+})
+
+async function fetchProperty(propertyId: string) {
+  console.log(propertyId)
+  // const search = searchFilter()
+  // const url = `${process.env.NEXT_PUBLIC_API_URL}/api/property/${propertyId}`
+  // return fetch_api({url})
+  // return search.listings.data.get()[0]
+  return getPropertyy(propertyId)
+}

@@ -2,7 +2,7 @@
 import { ApplicationCard } from "@/components/application_card";
 import { Header } from "@/components/header";
 import { CircleCheckBig, Clock, Download, XCircle } from "lucide-react";
-import { tenantApplicationRoute } from "..";
+import { tenantApplicationRoute } from "../routes";
 
 export const TenentApplications = () => {
   const applications = tenantApplicationRoute.useLoaderData() as Application[];

@@ -17,7 +17,7 @@ import {
   MapPin,
   User,
 } from "lucide-react";
-import { tenantResidenceRoute } from "..";
+import { tenantResidenceRoute } from "../routes";
 
 export const Residence = () => {
   const {property, payments, leases} = tenantResidenceRoute.useLoaderData() as {property: Property, payments: Payment[], leases: Lease[]};

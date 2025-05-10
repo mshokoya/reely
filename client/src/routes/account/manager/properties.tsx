@@ -1,5 +1,5 @@
 import { Header } from "@/components/header";
-import { managerPropertiesRoute } from "..";
+import { managerPropertiesRoute } from "../routes";
 import { PropertyCard } from "@/components/card";
 
 export const ManagerProperties = () => {

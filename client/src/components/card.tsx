@@ -22,8 +22,8 @@ export const PropertyCard = ({
   return (
     <div className="bg-white rounded-xl overflow-hidden shadow-lg w-full mb-5">
       <div className="relative">
-        <div className="w-full h-48 relative">
-          <img className="object-cover max-w-[768px]" alt={property.name} src={imgSrc.peek()} />
+        <div className="w-full h-[15rem] relative">
+          <img className="w-full h-full" alt={property.name} src={imgSrc.peek()} />
         </div>
         <div className="absolute bottom-4 left-4 flex gap-2">
           {property.isPetsAllowed && (

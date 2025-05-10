@@ -7,7 +7,7 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { ArrowDownToLine, ArrowLeft, Check, Download } from "lucide-react";
-import { managerPropertyRoute } from "..";
+import { managerPropertyRoute } from "../routes";
 import { Header } from "@/components/header";
 import { Link } from "@tanstack/react-router";
 

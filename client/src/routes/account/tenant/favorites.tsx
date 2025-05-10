@@ -1,6 +1,7 @@
 import { Header } from "@/components/header";
-import { tenantFavoritePropertiesRoute } from "..";
+// import { tenantFavoritePropertiesRoute } from "..";
 import { PropertyCard } from "@/components/card";
+import { tenantFavoritePropertiesRoute } from "../routes";
 
 export const Favorites = () => {
   const favoriteProperties  = tenantFavoritePropertiesRoute.useLoaderData() as Property[];
@@ -20,7 +21,7 @@ export const Favorites = () => {
             isFavorite={true}
             onFavoriteToggle={() => {}}
             showFavoriteButton={false}
-            propertyLink={`/tenant/${property.id}`}
+            propertyLink={`/account/tenant/property/${property.id}`}
           />
         ))}
       </div>

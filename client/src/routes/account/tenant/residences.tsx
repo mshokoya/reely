@@ -1,5 +1,5 @@
 import { useAuth } from "@/core/providers/auth/auth_context";
-import { tenantResidencesRoute } from "..";
+import { tenantResidencesRoute } from "../routes";
 import { Header } from "@/components/header";
 import { PropertyCard } from "@/components/card";
 

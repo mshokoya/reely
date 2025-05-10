@@ -4,7 +4,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { observer, useObservable } from "@legendapp/state/react";
 import { Link } from "@tanstack/react-router";
 import { CircleCheckBig, Download, File, Hospital } from "lucide-react";
-import { managerApplicationRoute } from "..";
+import { managerApplicationRoute } from "../routes";
 import { updateApplication } from "@/core/actions/application_actions";
 
 export const ManagerApplications = observer(() => {

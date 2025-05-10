@@ -1,3 +1,4 @@
+import { getUserPropertiess } from "@/mock/mock";
 import { fetch_api } from "../util";
 
 export const createProperty = async (body: PropertySchema) => (
@@ -30,7 +31,8 @@ export const getUserProperty = async (propertyId: string, user: 'tenant' | 'mana
 )
 
 export const getFavoriteProperties = async () => (
-  await fetch_api<Property[]>({ url: `${import.meta.env.VITE_API_URL}/properties/favorites` })
+  // await fetch_api<Property[]>({ url: `${import.meta.env.VITE_API_URL}/properties/favorites` })
+  getUserPropertiess('user123')
 )
 
 export const getResidences = async () => {

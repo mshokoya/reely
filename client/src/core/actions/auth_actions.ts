@@ -1,3 +1,4 @@
+import { getUserr } from "@/mock/mock";
 import { fetch_api } from "../util";
 
 export const loginAction = async () => (
@@ -18,5 +19,6 @@ export const logoutAction = async () => {
 };
 
 export const verifyLoginAction = async () => {
-  return await fetch_api<User>({ url: import.meta.env.VITE_GET_ME_PATH })
+  // return await fetch_api<User>({ url: import.meta.env.VITE_GET_ME_PATH })
+  return getUserr('user123')
 };
